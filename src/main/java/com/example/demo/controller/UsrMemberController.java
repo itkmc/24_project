@@ -47,7 +47,7 @@ public class UsrMemberController {
 
 		return "usr/member/login";
 	}
-
+	
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
 	public String doLogin(HttpServletRequest req, String loginId, String loginPw, String afterLoginUri) {
@@ -92,42 +92,40 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
-	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname,
-			String cellphoneNum, String email) {
-		Rq rq = (Rq) req.getAttribute("rq");
-		if (rq.isLogined()) {
-			return Ut.jsHistoryBack("F-A", "이미 로그인 상태입니다");
-		}
+	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname) {
+	    Rq rq = (Rq) req.getAttribute("rq");
+	    if (rq.isLogined()) {
+	        return Ut.jsHistoryBack("F-A", "이미 로그인 상태입니다");
+	    }
 
-		if (Ut.isNullOrEmpty(loginId)) {
-			return Ut.jsHistoryBack("F-1", "아이디를 입력해주세요");
-		}
-		if (Ut.isNullOrEmpty(loginPw)) {
-			return Ut.jsHistoryBack("F-2", "비밀번호를 입력해주세요");
-		}
-		if (Ut.isNullOrEmpty(name)) {
-			return Ut.jsHistoryBack("F-3", "이름을 입력해주세요");
-		}
-		if (Ut.isNullOrEmpty(nickname)) {
-			return Ut.jsHistoryBack("F-4", "닉네임을 입력해주세요");
-		}
-		if (Ut.isNullOrEmpty(cellphoneNum)) {
-			return Ut.jsHistoryBack("F-5", "전화번호를 입력해주세요");
+	    if (Ut.isNullOrEmpty(loginId)) {
+	        return Ut.jsHistoryBack("F-1", "아이디를 입력해주세요");
+	    }
+	    if (Ut.isNullOrEmpty(loginPw)) {
+	        return Ut.jsHistoryBack("F-2", "비밀번호를 입력해주세요");
+	    }
+	    if (Ut.isNullOrEmpty(name)) {
+	        return Ut.jsHistoryBack("F-3", "이름을 입력해주세요");
+	    }
+	    if (Ut.isNullOrEmpty(nickname)) {
+	        return Ut.jsHistoryBack("F-4", "닉네임을 입력해주세요");
+	    }
 
-		}
-		if (Ut.isNullOrEmpty(email)) {
-			return Ut.jsHistoryBack("F-6", "이메일을 입력해주세요");
-		}
+	    // 중복 체크를 수행합니다.
+	    if (!memberService.isJoinableLoginId(loginId)) {
+	        return Ut.jsHistoryBack("F-5", "이미 사용 중인 아이디입니다.");
+	    }
 
-		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNum, email);
+	    // 중복 체크를 통과한 경우 회원가입을 진행합니다.
+	    ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname);
 
-		if (joinRd.isFail()) {
-			return Ut.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
-		}
+	    if (joinRd.isFail()) {
+	        return Ut.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
+	    }
 
-		Member member = memberService.getMember(joinRd.getData1());
+	    Member member = memberService.getMember(joinRd.getData1());
 
-		return Ut.jsReplace(joinRd.getResultCode(), joinRd.getMsg(), "../member/login");
+	    return Ut.jsReplace(joinRd.getResultCode(), joinRd.getMsg(), "../member/login");
 	}
 
 	@RequestMapping("/usr/member/myPage")
@@ -178,9 +176,36 @@ public class UsrMemberController {
 			return Ut.jsHistoryBack("F-6", "이메일을 입력해주세요");
 		}
 
-		ResultData modifyRd = memberService.modify(rq.getLoginedMemberId(), loginPw, name, nickname, cellphoneNum,
-				email);
+		ResultData modifyRd = memberService.modify(rq.getLoginedMemberId(), loginPw, name, nickname);
 
 		return Ut.jsReplace(modifyRd.getResultCode(), modifyRd.getMsg(), "../member/myPage");
+	}
+	
+	@RequestMapping("/usr/member/showQuestion")
+	public String showQuestionForm(HttpServletRequest req, String loginId, String loginPw, String name, String nickname) {
+	    req.setAttribute("loginId", loginId);
+	    req.setAttribute("loginPw", loginPw);
+	    req.setAttribute("name", name);
+	    req.setAttribute("nickname", nickname);
+	    return "usr/member/questionForm";
+	}
+
+	@RequestMapping("/usr/member/doQuestion")
+	@ResponseBody
+	public String doQuestion(HttpServletRequest req, String Question1, String Question2, String Question3, String Question4) {
+	    // 문제를 올바르게 푼 경우, 회원가입 로직 수행
+	    String loginId = req.getParameter("loginId");
+	    String loginPw = req.getParameter("loginPw");
+	    String name = req.getParameter("name");
+	    String nickname = req.getParameter("nickname");
+
+	    // 문제를 올바르게 풀었다고 가정하고 회원가입 진행
+	    ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname);
+
+	    if (joinRd.isFail()) {
+	        return Ut.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
+	    }
+
+	    return Ut.jsReplace(joinRd.getResultCode(), joinRd.getMsg(), "../member/login");
 	}
 }

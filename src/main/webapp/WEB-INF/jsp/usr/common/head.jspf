@@ -22,21 +22,16 @@
 <body>
 	<header>
 		<div class="h-20 flex mx-auto items-center text-3xl">
-			<a href="/">LOGO</a>
+			<a href="../home/main">HISTORY TIMELINE</a>
 			<div class="flex-grow"></div>
 			<ul class="flex">
-				<li><a class="hover:underline" href="/">HOME</a></li>
-				<li><a class="hover:underline" href="#">QnA</a>
-					<ul>
-						<li><a class="hover:underline" href="../article/list?boardId=3&page=1">QnA</a></li>
-					</ul></li>
+				<li><a class="hover:underline" href="#">QnA</a></li>
 				<c:if test="${!rq.isLogined() }">
 					<li><a class="hover:underline" href="../member/login">LOGIN</a></li>
 					<li><a class="hover:underline" href="../member/join">JOIN</a></li>
 				</c:if>
-				<li><a class="hover:underline" href="../article/write">WRITE</a></li>
 				<c:if test="${!rq.isLogined() }">
-				<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/member/myPage">MYPAGE</a></li>
+					<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/member/myPage">MYPAGE</a></li>
 				</c:if>
 				<li><a onclick="if(confirm('로그아웃 할래?') == false) return false;" class="hover:underline"
 					href="../member/doLogout">LOGOUT</a></li>

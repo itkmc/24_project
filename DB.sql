@@ -1,15 +1,6 @@
-DROP DATABASE IF EXISTS `Spring_AM_01`;
-CREATE DATABASE `Spring_AM_01`;
-USE `Spring_AM_01`;
-
-# article 테이블 생성
-CREATE TABLE article(
-    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    regDate DATETIME NOT NULL,
-    updateDate DATETIME NOT NULL,
-    title CHAR(100) NOT NULL,
-    `body` TEXT NOT NULL
-);
+DROP DATABASE IF EXISTS `History_Timeline`;
+CREATE DATABASE `History_Timeline`;
+USE `History_Timeline`;
 
 # member 테이블 생성
 CREATE TABLE `member`(
@@ -18,40 +9,12 @@ CREATE TABLE `member`(
     updateDate DATETIME NOT NULL,
     loginId CHAR(20) NOT NULL,
     loginPw CHAR(80) NOT NULL,
-    `authLevel` SMALLINT(2) UNSIGNED DEFAULT 3 COMMENT '권한 레벨 (3=일반,7=관리자)',
     `name` CHAR(20) NOT NULL,
     nickname CHAR(20) NOT NULL,
-    cellphoneNum CHAR(20) NOT NULL,
-    email CHAR(50) NOT NULL,
+    grade CHAR(20) NOT NULL DEFAULT '초보자',
     delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '탈퇴 여부 (0=탈퇴 전, 1=탈퇴 후)',
     delDate DATETIME COMMENT '탈퇴 날짜'
 );
-
-
-# article TD 생성
-INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
-title = '제목1',
-`body` = '내용1';
-
-INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
-title = '제목2',
-`body` = '내용2';
-
-INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
-title = '제목3',
-`body` = '내용3';
-
-INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
-title = '제목4',
-`body` = '내용4';
 
 # member TD 생성
 # (관리자)
@@ -60,11 +23,9 @@ SET regDate = NOW(),
 updateDate = NOW(),
 loginId = 'admin',
 loginPw = 'admin',
-`authLevel` = 7,
 `name` = '관리자',
 nickname = '관리자',
-cellphoneNum = '01012341234',
-email = 'abcd@gmail.com';
+grade = '관리자';
 
 # (일반)
 INSERT INTO `member`
@@ -73,9 +34,8 @@ updateDate = NOW(),
 loginId = 'test1',
 loginPw = 'test1',
 `name` = '회원1',
-nickname = '회원1',
-cellphoneNum = '01043214321',
-email = 'abcde@gmail.com';
+nickname = '암것도몰라요',
+grade = '초보자';
 
 # (일반)
 INSERT INTO `member`
@@ -84,23 +44,80 @@ updateDate = NOW(),
 loginId = 'test2',
 loginPw = 'test2',
 `name` = '회원2',
-nickname = '회원2',
-cellphoneNum = '01056785678',
-email = 'abcdef@gmail.com';
+nickname = '쫌자신있지',
+grade = '중수';
 
-ALTER TABLE article ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER updateDate;
+# (일반)
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'test3',
+loginPw = 'test3',
+`name` = '회원3',
+nickname = '마스터했다구',
+grade = '고수';
 
-UPDATE article
-SET memberId = 2
-WHERE id IN (1,2);
+# question 테이블 생성
+CREATE TABLE question(
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    content CHAR(200) NOT NULL,
+    answer CHAR(100) NOT NULL
+);
 
-UPDATE article
-SET memberId = 3
-WHERE id IN (3,4);
+# question 생성
+INSERT INTO question
+SET content = '널리 인간을 이롭게 한다는 고조선의 건국 이념은?',
+answer = '홍익인간';
+
+# question 생성
+INSERT INTO question
+SET content = '세계에서 가장 오래된 목판 인쇄물은?',
+answer = '무구정광대다라니경';
+
+# question 생성
+INSERT INTO question
+SET content = '을지문덕 장군이 수나라의 30만 대군을 몰살시켜 크게 승리한 이 전투의 이름은?',
+answer = '살수대첩';
+
+# question 생성
+INSERT INTO question
+SET content = '국권 회복을 위해 1907년 안창호, 양기탁 등이 주축이 되어 결성한 비밀결사 단체는?',
+answer = '신민회';
+
+# question 생성
+INSERT INTO question
+SET content = '우리나라 최초의 한글소설인 이 소설은?',
+answer = '홍길동전';
+
+# question 생성
+INSERT INTO question
+SET content = '삼국이 통일 된 후 대조영이 세운 나라는?',
+answer = '발해';
+
+# question 생성
+INSERT INTO question
+SET content = '불교 수용, 태학을 설립, 율령 반포를 한 고구려의 왕은?',
+answer = '소수림왕';
+
+# question 생성
+INSERT INTO question
+SET content = '독립운동가, 시인, 승려로 님의 침묵을 쓴 사람은?',
+answer = '한용운';
+
+# question 생성
+INSERT INTO question
+SET content = '을사조약이 일본의 강압으로 이루어진것임을 세계에 알리고 무효로 만들기 위해 헤이크에 파견된 사절단의 이름은?',
+answer = '헤이그특사';
+
+# question 생성
+INSERT INTO question
+SET content = '김대중 정부 당시 북한에 협력과 지원을 함으로써 평화적인 통일을 목적으로 하는​ 대북 화해 협력정책인 이 정책의 이름은?',
+answer = '햇볕정책';
 
 
-# board 테이블 생성
-CREATE TABLE board(
+
+# qna 테이블 생성
+/*CREATE TABLE qna(
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
@@ -109,20 +126,6 @@ CREATE TABLE board(
     delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제 여부 (0=삭제 전, 1=삭제 후)',
     delDate DATETIME COMMENT '삭제 날짜'
 );
-
-# board TD 생성
-INSERT INTO board
-SET regDate = NOW(),
-updateDate = NOW(),
-`code` = 'NOTICE',
-`name` = '공지사항';
-
-INSERT INTO board
-SET regDate = NOW(),
-updateDate = NOW(),
-`code` = 'FREE',
-`name` = '자유';
-
 INSERT INTO board
 SET regDate = NOW(),
 updateDate = NOW(),
@@ -144,6 +147,7 @@ SET boardId = 3
 WHERE id = 4;
 
 ALTER TABLE article ADD COLUMN hitCount INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `body`;
+*/
 
 # reactionPoint 테이블 생성
 CREATE TABLE reactionPoint(
@@ -225,7 +229,6 @@ CREATE TABLE reply (
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
     memberId INT(10) UNSIGNED NOT NULL,
-    relTypeCode CHAR(50) NOT NULL COMMENT '관련 데이터 타입 코드',
     relId INT(10) NOT NULL COMMENT '관련 데이터 번호',
     `body`TEXT NOT NULL
 );
@@ -329,6 +332,7 @@ ON R.id = RP_SUM.relId
 SET R.goodReactionPoint = RP_SUM.goodReactionPoint,
 R.badReactionPoint = RP_SUM.badReactionPoint;
 
+
 ###############################################
 
 SELECT * FROM article;
@@ -341,7 +345,7 @@ SELECT * FROM reactionPoint;
 
 SELECT * FROM `reply`;
 
-
+DELETE FROM reply WHERE id = 3
 
 SELECT goodReactionPoint
 FROM article 

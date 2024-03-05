@@ -17,8 +17,7 @@ public class MemberService {
 		this.memberRepository = memberRepository;
 	}
 
-	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname, String cellphoneNum,
-			String email) {
+	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname) {
 
 		Member existsMember = getMemberByLoginId(loginId);
 
@@ -26,13 +25,13 @@ public class MemberService {
 			return ResultData.from("F-7", Ut.f("이미 사용중인 아이디(%s)입니다", loginId));
 		}
 
-		existsMember = getMemberByNameAndEmail(name, email);
+		existsMember = getMemberByNickname(nickname);
 
 		if (existsMember != null) {
-			return ResultData.from("F-8", Ut.f("이미 사용중인 이름(%s)과 이메일(%s)입니다", name, email));
+			return ResultData.from("F-8", Ut.f("이미 사용중인 이름(%s)입니다", nickname));
 		}
 
-		memberRepository.join(loginId, loginPw, name, nickname, cellphoneNum, email);
+		memberRepository.join(loginId, loginPw, name, nickname);
 
 		int id = memberRepository.getLastInsertId();
 
@@ -40,8 +39,8 @@ public class MemberService {
 
 	}
 
-	private Member getMemberByNameAndEmail(String name, String email) {
-		return memberRepository.getMemberByNameAndEmail(name, email);
+	private Member getMemberByNickname(String nickname) {
+		return memberRepository.getMemberByNickname(nickname);
 	}
 
 	public Member getMemberByLoginId(String loginId) {
@@ -52,10 +51,14 @@ public class MemberService {
 		return memberRepository.getMember(id);
 	}
 
-	public ResultData modify(int loginedMemberId, String loginPw, String name, String nickname, String cellphoneNum,
-			String email) {
-		memberRepository.modify(loginedMemberId, loginPw, name, nickname, cellphoneNum, email);
+	public ResultData modify(int loginedMemberId, String loginPw, String name, String nickname) {
+		memberRepository.modify(loginedMemberId, loginPw, name, nickname);
 		return ResultData.from("S-1", "회원정보 수정 완료");
+	}
+
+	public boolean isJoinableLoginId(String loginId) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

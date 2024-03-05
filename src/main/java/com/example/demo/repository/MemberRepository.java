@@ -19,10 +19,9 @@ public interface MemberRepository {
 	@Select("""
 			SELECT *
 			FROM `member`
-			WHERE name = #{name}
-			AND email = #{email}
+			WHERE nickname = #{nickname}
 			""")
-	public Member getMemberByNameAndEmail(String name, String email);
+	public Member getMemberByNickname(String name);
 
 	@Insert("""
 			INSERT INTO
@@ -32,11 +31,9 @@ public interface MemberRepository {
 			loginId = #{loginId},
 			loginPw = #{loginPw},
 			`name` = #{name},
-			nickname = #{nickname},
-			cellphoneNum = #{cellphoneNum},
-			email = #{email}
+			nickname = #{nickname}
 			""")
-	public void join(String loginId, String loginPw, String name, String nickname, String cellphoneNum, String email);
+	public void join(String loginId, String loginPw, String name, String nickname);
 
 	@Select("SELECT LAST_INSERT_ID()")
 	public int getLastInsertId();
@@ -57,18 +54,11 @@ public interface MemberRepository {
 				<if test="nickname != null">
 					nickname = #{nickname},
 				</if>
-				<if test="cellphoneNum != null">
-					cellphoneNum = #{cellphoneNum},
-				</if>
-				<if test="email != null">
-					email = #{email},
-				</if>
 				updateDate= NOW()
 			</set>
 			WHERE id = #{loginedMemberId}
 			</script>
 			""")
-	public void modify(int loginedMemberId, String loginPw, String name, String nickname, String cellphoneNum,
-			String email);
+	public void modify(int loginedMemberId, String loginPw, String name, String nickname);
 
 }

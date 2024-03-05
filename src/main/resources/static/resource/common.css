@@ -89,15 +89,16 @@ header>div>ul>li:hover>ul {
 /* 전체 문서의 스타일을 설정합니다. */
 body {
 	font: normal 16px/1.5 "Helvetica Neue", sans-serif; /* 폰트 스타일 설정 */
-	background: #456990; /* 배경색 설정 */
-	color: #fff; /* 텍스트 색상 설정 */
+	background: #ffffff; /* 배경색 설정 */
+	color: #000000; /* 텍스트 색상 설정 */
 	overflow-x: hidden; /* 수평 스크롤 제거 */
 	padding-bottom: 50px; /* 하단 여백 설정 */
 }
 
 /* 시작 부분 스타일을 설정합니다. */
 .intro {
-	background: #f45b69; /* 배경색 설정 */
+	background: #000000; /* 배경색 설정 */
+	color: #ffffff; /* 텍스트 색상 설정 */
 	padding: 100px 0; /* 상단과 하단 패딩 설정 */
 }
 
@@ -111,13 +112,17 @@ body {
 }
 
 /* 제목 스타일을 설정합니다. */
-h1 {
-	font-size: 2.5rem; /* 폰트 크기 설정 */
+.title {
+	font-size: 3rem; /* 폰트 크기 설정 */
+}
+
+text {
+	font-size: 2rem;
 }
 
 /* 타임라인 스타일을 설정합니다. */
 .timeline ul {
-	background: #456990; /* 배경색 설정 */
+	background: #000000; /* 배경색 설정 */
 	padding: 50px 0; /* 패딩 설정 */
 }
 
@@ -128,35 +133,60 @@ h1 {
 	width: 6px; /* 너비 설정 */
 	margin: 0 auto; /* 가운데 정렬 */
 	padding-top: 50px; /* 상단 패딩 설정 */
-	background: #fff; /* 배경색 설정 */
+	background: #000000; /* 배경색 설정 */
 }
 
 /* 타임라인 아이템 마커 스타일을 설정합니다. */
 .timeline ul li::after {
-	content: ""; /* 가상 요소 생성 */
-	position: absolute; /* 절대 위치 설정 */
-	left: 50%; /* 좌측 위치 설정 */
-	bottom: 0; /* 하단 위치 설정 */
-	transform: translateX(-50%); /* 가로 정렬 */
-	width: 30px; /* 너비 설정 */
-	height: 30px; /* 높이 설정 */
-	border-radius: 50%; /* 원형 모양 설정 */
-	background: inherit; /* 배경색 상속 */
-	z-index: 1; /* Z축 순서 설정 */
+    content: ""; /* 가상 요소 생성 */
+    position: absolute; /* 절대 위치 설정 */
+    left: 50%; /* 가운데 정렬 */
+    bottom: 0; /* 하단 위치 설정 */
+    transform: translateX(-50%); /* 가로 정렬 */
+    width: 0; /* 너비 설정 */
+    height: 0; /* 높이 설정 */
+    border-left: 15px solid transparent; /* 기차 모양으로 설정 */
+    border-right: 15px solid transparent; /* 기차 모양으로 설정 */
+    border-top: 15px solid black; /* 기차 모양으로 설정 */
+    z-index: 1; /* Z축 순서 설정 */
 }
 
 /* 타임라인 아이템 내용 스타일을 설정합니다. */
 .timeline ul li div {
-	position: relative; /* 상대 위치 설정 */
-	bottom: 0; /* 아래쪽 위치 설정 */
-	width: 400px; /* 너비 설정 */
-	padding: 15px; /* 패딩 설정 */
-	background: #f45b69; /* 배경색 설정 */
+	position: relative;
+	bottom: 0;
+	width: 400px;
+	padding: 15px;
+	background: #ffffff;
+	text-align: center; /* 수평 중앙 정렬을 유지합니다. */
+	display: flex; /* Flexbox 레이아웃을 적용합니다. */
+	flex-direction: column; /* 아이템을 세로로 배치합니다. */
+	justify-content: center; /* 내용을 세로 방향으로 가운데 정렬합니다. */
+}
+
+.timeline ul li div img {
+	display: block;
+	margin: auto;
+	max-width: 100%; /* 이미지가 컨테이너를 넘어서지 않도록 함 */
+	height: auto; /* 이미지 비율을 유지하면서 너비에 맞춰 조정 */
+}
+
+.solid {
+	border: 5px solid;
+}
+
+.double {
+	border: 5px double;
+}
+
+title {
+	background: #000000;
 }
 
 /* 타임라인 아이템 내용 앞부분 스타일을 설정합니다. */
 .timeline ul li div::before {
 	content: ""; /* 가상 요소 생성 */
+	display: none; /*가상 요소 제거*/
 	position: absolute; /* 절대 위치 설정 */
 	bottom: 7px; /* 하단 위치 설정 */
 	width: 0; /* 너비 설정 */
@@ -173,7 +203,7 @@ h1 {
 .timeline ul li:nth-child(odd) div::before {
 	left: -15px; /* 좌측 위치 설정 */
 	border-width: 8px 16px 8px 0; /* 테두리 두께 설정 */
-	border-color: transparent #f45b69 transparent transparent;
+	border-color: transparent #000000 transparent transparent;
 	/* 테두리 색상 설정 */
 }
 
@@ -186,7 +216,7 @@ h1 {
 .timeline ul li:nth-child(even) div::before {
 	right: -15px; /* 우측 위치 설정 */
 	border-width: 8px 0 8px 16px; /* 테두리 두께 설정 */
-	border-color: transparent transparent transparent #f45b69;
+	border-color: transparent transparent transparent #000000;
 	/* 테두리 색상 설정 */
 }
 
@@ -199,7 +229,7 @@ time {
 }
 
 .period {
-	font-size: 3.5rem; /* 폰트 크기 설정 */
+	font-size: 2.5rem; /* 폰트 크기 설정 */
 }
 
 /* 타임라인 아이템의 효과 스타일을 설정합니다. */
@@ -209,7 +239,7 @@ time {
 
 /* 보여지는 타임라인 아이템의 효과 스타일을 설정합니다. */
 .timeline ul li.in-view::after {
-	background: #f45b69; /* 배경색 설정 */
+	background: #000000; /* 배경색 설정 */
 }
 
 /* 타임라인 아이템 내용의 효과 스타일을 설정합니다. */
