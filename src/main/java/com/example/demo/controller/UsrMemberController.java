@@ -12,6 +12,7 @@ import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Rq;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class UsrMemberController {
@@ -47,7 +48,6 @@ public class UsrMemberController {
 
 		return "usr/member/login";
 	}
-	
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
 	public String doLogin(HttpServletRequest req, String loginId, String loginPw, String afterLoginUri) {
@@ -89,44 +89,54 @@ public class UsrMemberController {
 
 		return "usr/member/join";
 	}
-
+	
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
 	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname) {
-	    Rq rq = (Rq) req.getAttribute("rq");
-	    if (rq.isLogined()) {
-	        return Ut.jsHistoryBack("F-A", "이미 로그인 상태입니다");
-	    }
+	    // 이전 페이지의 정보를 세션에 저장합니다.
+	    HttpSession session = req.getSession();
+	    session.setAttribute("loginId", loginId);
+	    session.setAttribute("loginPw", loginPw);
+	    session.setAttribute("name", name);
+	    session.setAttribute("nickname", nickname);
 
-	    if (Ut.isNullOrEmpty(loginId)) {
-	        return Ut.jsHistoryBack("F-1", "아이디를 입력해주세요");
-	    }
-	    if (Ut.isNullOrEmpty(loginPw)) {
-	        return Ut.jsHistoryBack("F-2", "비밀번호를 입력해주세요");
-	    }
-	    if (Ut.isNullOrEmpty(name)) {
-	        return Ut.jsHistoryBack("F-3", "이름을 입력해주세요");
-	    }
-	    if (Ut.isNullOrEmpty(nickname)) {
-	        return Ut.jsHistoryBack("F-4", "닉네임을 입력해주세요");
-	    }
-
-	    // 중복 체크를 수행합니다.
-	    if (!memberService.isJoinableLoginId(loginId)) {
-	        return Ut.jsHistoryBack("F-5", "이미 사용 중인 아이디입니다.");
-	    }
-
-	    // 중복 체크를 통과한 경우 회원가입을 진행합니다.
-	    ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname);
-
-	    if (joinRd.isFail()) {
-	        return Ut.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
-	    }
-
-	    Member member = memberService.getMember(joinRd.getData1());
-
-	    return Ut.jsReplace(joinRd.getResultCode(), joinRd.getMsg(), "../member/login");
+	    // 회원가입을 완료하는 로직은 문제를 올바르게 푼 후의 doQuestion 메서드에서 처리합니다.
+	    // 따라서 여기서는 다음 페이지로 리다이렉트만 진행합니다.
+	    return "redirect:/usr/member/showQuestion"; // 다음 페이지로 이동합니다.
 	}
+
+
+//	@RequestMapping("/usr/member/doJoin")
+//	@ResponseBody
+//	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname) {
+//		Rq rq = (Rq) req.getAttribute("rq");
+//		if (rq.isLogined()) {
+//			return Ut.jsHistoryBack("F-A", "이미 로그인 상태입니다");
+//		}
+//
+//		if (Ut.isNullOrEmpty(loginId)) {
+//			return Ut.jsHistoryBack("F-1", "아이디를 입력해주세요");
+//		}
+//		if (Ut.isNullOrEmpty(loginPw)) {
+//			return Ut.jsHistoryBack("F-2", "비밀번호를 입력해주세요");
+//		}
+//		if (Ut.isNullOrEmpty(name)) {
+//			return Ut.jsHistoryBack("F-3", "이름을 입력해주세요");
+//		}
+//		if (Ut.isNullOrEmpty(nickname)) {
+//			return Ut.jsHistoryBack("F-4", "닉네임을 입력해주세요");
+//		}
+//
+//		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname);
+//
+//		if (joinRd.isFail()) {
+//			return Ut.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
+//		}
+//
+//		Member member = memberService.getMember(joinRd.getData1());
+//
+//		return Ut.jsReplace(joinRd.getResultCode(), joinRd.getMsg(), "../member/login");
+//	}
 
 	@RequestMapping("/usr/member/myPage")
 	public String showMyPage() {
@@ -193,19 +203,21 @@ public class UsrMemberController {
 	@RequestMapping("/usr/member/doQuestion")
 	@ResponseBody
 	public String doQuestion(HttpServletRequest req, String Question1, String Question2, String Question3, String Question4) {
-	    // 문제를 올바르게 푼 경우, 회원가입 로직 수행
-	    String loginId = req.getParameter("loginId");
-	    String loginPw = req.getParameter("loginPw");
-	    String name = req.getParameter("name");
-	    String nickname = req.getParameter("nickname");
+	    // 세션에서 저장된 정보를 가져옵니다.
+	    HttpSession session = req.getSession();
+	    String loginId = (String) session.getAttribute("loginId");
+	    String loginPw = (String) session.getAttribute("loginPw");
+	    String name = (String) session.getAttribute("name");
+	    String nickname = (String) session.getAttribute("nickname");
 
-	    // 문제를 올바르게 풀었다고 가정하고 회원가입 진행
+	    // 문제를 올바르게 푼 경우, 회원가입 로직 수행
 	    ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname);
 
 	    if (joinRd.isFail()) {
 	        return Ut.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
 	    }
 
+	    // 회원가입이 성공하면 로그인 페이지로 이동합니다.
 	    return Ut.jsReplace(joinRd.getResultCode(), joinRd.getMsg(), "../member/login");
 	}
 }

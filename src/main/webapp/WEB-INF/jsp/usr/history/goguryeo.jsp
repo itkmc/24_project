@@ -65,17 +65,20 @@
 		<li>
 			<div class="double">
 				<time>
-					불교전래 및 태학설립(372년),율령반포(373년) <img src="https://mblogthumb-phinf.pstatic.net/MjAxNzAyMjFfODcg/MDAxNDg3NjUzOTc5MjE3.XUquvf7qIXl_VaZunm8SXzDajkII8ySkKaq5A6Tlzs0g.zidwWFyAqACcXLFue8jOCvHOtjS1WMOTWrdkAiqdbbkg.JPEG.pokpok3488/1.jpg?type=w800" style="width: 150px; height: 150px;"/>
+					불교전래 및 태학설립(372년),율령반포(373년) <img
+						src="https://mblogthumb-phinf.pstatic.net/MjAxNzAyMjFfODcg/MDAxNDg3NjUzOTc5MjE3.XUquvf7qIXl_VaZunm8SXzDajkII8ySkKaq5A6Tlzs0g.zidwWFyAqACcXLFue8jOCvHOtjS1WMOTWrdkAiqdbbkg.JPEG.pokpok3488/1.jpg?type=w800"
+						style="width: 150px; height: 150px;" />
 				</time>
-				전진으로부터 불교를 받아들이고 태학(교육기관)을 설립한 뒤 율령을 반포하여 체제정비를 하였다 
+				전진으로부터 불교를 받아들이고 태학(교육기관)을 설립한 뒤 율령을 반포하여 체제정비를 하였다
 			</div>
 		</li>
 		<li>
 			<div class="double">
 				<time>
-					신라에 침입한 왜구 격퇴(400년)<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmCmnY_BouTNJFDncHVmi_wH4OOPqo93JwGTPtmZPUSA&s" />
+					신라에 침입한 왜구 격퇴(400년)<img
+						src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmCmnY_BouTNJFDncHVmi_wH4OOPqo93JwGTPtmZPUSA&s" />
 				</time>
-				내물왕(신라)에 구원 요청을 받고 백제·가야·왜 연합군을 낙동강 유역까지 추격하여 물리쳤다(400년 사건 또는 영락 10년 사건) 
+				내물왕(신라)에 구원 요청을 받고 백제·가야·왜 연합군을 낙동강 유역까지 추격하여 물리쳤다(400년 사건 또는 영락 10년 사건)
 			</div>
 		</li>
 		<li>

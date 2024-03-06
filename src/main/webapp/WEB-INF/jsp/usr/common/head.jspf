@@ -25,16 +25,18 @@
 			<a href="../home/main">HISTORY TIMELINE</a>
 			<div class="flex-grow"></div>
 			<ul class="flex">
-				<li><a class="hover:underline" href="#">QnA</a></li>
+
+				<li><a class="hover:underline" href="../article/list?boardId=3&page=1">QnA</a></li>
+
 				<c:if test="${!rq.isLogined() }">
 					<li><a class="hover:underline" href="../member/login">LOGIN</a></li>
 					<li><a class="hover:underline" href="../member/join">JOIN</a></li>
 				</c:if>
-				<c:if test="${!rq.isLogined() }">
+				<c:if test="${rq.isLogined() }">
 					<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/member/myPage">MYPAGE</a></li>
+					<li><a onclick="if(confirm('로그아웃 할래?') == false) return false;" class="hover:underline"
+						href="../member/doLogout">LOGOUT</a></li>
 				</c:if>
-				<li><a onclick="if(confirm('로그아웃 할래?') == false) return false;" class="hover:underline"
-					href="../member/doLogout">LOGOUT</a></li>
 			</ul>
 		</div>
 	</header>

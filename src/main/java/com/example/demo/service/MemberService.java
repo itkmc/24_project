@@ -55,10 +55,4 @@ public class MemberService {
 		memberRepository.modify(loginedMemberId, loginPw, name, nickname);
 		return ResultData.from("S-1", "회원정보 수정 완료");
 	}
-
-	public boolean isJoinableLoginId(String loginId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

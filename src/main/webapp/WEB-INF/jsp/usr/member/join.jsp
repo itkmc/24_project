@@ -21,6 +21,10 @@
 		    name: name,
 		    nickname: nickname
 		}, function(data) {
+			$('.join-loginId').text(data.loginId);
+			$('.join-loginPw').text(data.loginPw);
+			$('.join-name').text(data.name);
+			$('.join-nickname').text(data.nickname);
 		    // 서버로부터의 응답을 처리하는 로직
 		    // 예: 성공 응답을 확인하는 조건
 		    if(data.success) { // 이 부분은 실제 응답 데이터에 맞게 수정되어야 합니다.
@@ -61,7 +65,7 @@
 					</tr>
 					<tr>
 						<th></th>
-						<td><input type="submit" value="가입" /></td>
+						<td><input onclick="joinCheck()" type="submit" value="가입" /></td>
 					</tr>
 				</tbody>
 			</table>
