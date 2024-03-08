@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.repository.MemberRepository;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Member;
+import com.example.demo.vo.Question;
 import com.example.demo.vo.ResultData;
 
 @Service
@@ -17,7 +18,7 @@ public class MemberService {
 		this.memberRepository = memberRepository;
 	}
 
-	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname) {
+	public ResultData<Object> join(String loginId, String loginPw, String name, String nickname) {
 
 		Member existsMember = getMemberByLoginId(loginId);
 
@@ -55,4 +56,18 @@ public class MemberService {
 		memberRepository.modify(loginedMemberId, loginPw, name, nickname);
 		return ResultData.from("S-1", "회원정보 수정 완료");
 	}
+
+	public boolean isIdOverlap(String loginId) {
+	       Member member = getMemberByLoginId(loginId);
+	       
+	       if (member == null) {
+	          
+	          return false;
+	       }
+	       return true;
+	   }
+
+//	public Question question(String question1) {
+//		return memberRepository.question(question1);
+//	}
 }

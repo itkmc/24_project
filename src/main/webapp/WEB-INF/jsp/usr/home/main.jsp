@@ -6,10 +6,16 @@
 <!-- The Timeline -->
 
 <section class="intro">
-	<div class="container">
-		<div class= "tilte">History TimeLine &darr;</h1>
-	</div>
+    <div class="container">
+        <video muted autoplay loop class="fullscreen-video">
+            <source src="https://media.istockphoto.com/id/1329851020/ko/%EB%B9%84%EB%94%94%EC%98%A4/%EB%B6%81%EC%B4%8C-%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84-%EC%84%9C%EC%9A%B8-%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD.mp4?s=mp4-640x640-is&k=20&c=PPWBPiK6LXdVpakABtQLkOSfGdQx1-dR_YfIf3KR5m0=" type="video/mp4">
+        </video>
+        <div class="title">
+            <h1>History TimeLine &darr;</h1>
+        </div>
+    </div>
 </section>
+
 
 <section class="timeline flex justify-center">
 	<ul>

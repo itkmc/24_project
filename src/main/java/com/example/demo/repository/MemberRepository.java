@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.vo.Member;
+import com.example.demo.vo.Question;
 
 @Mapper
 public interface MemberRepository {
@@ -60,5 +61,12 @@ public interface MemberRepository {
 			</script>
 			""")
 	public void modify(int loginedMemberId, String loginPw, String name, String nickname);
+
+	@Select("""
+			SELECT *
+			FROM question
+			where id = 1
+			""")
+	public Question question(String question1);
 
 }
