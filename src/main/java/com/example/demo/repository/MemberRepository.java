@@ -69,4 +69,11 @@ public interface MemberRepository {
 			""")
 	public Question question(String question1);
 
+	@Update("""
+			UPDATE 'member'
+			SET grade = #{grade}
+			WHERE id = #{loginId}
+			""")
+	public Object updateMember(String loginId, String grade);
+
 }

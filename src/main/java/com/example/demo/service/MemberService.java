@@ -58,14 +58,19 @@ public class MemberService {
 	}
 
 	public boolean isIdOverlap(String loginId) {
-	       Member member = getMemberByLoginId(loginId);
-	       
-	       if (member == null) {
-	          
-	          return false;
-	       }
-	       return true;
-	   }
+		Member member = getMemberByLoginId(loginId);
+
+		if (member == null) {
+
+			return false;
+		}
+		return true;
+	}
+
+	public Object updateMember(String loginId, String grade) {
+		return memberRepository.updateMember(loginId, grade);
+
+	}
 
 //	public Question question(String question1) {
 //		return memberRepository.question(question1);

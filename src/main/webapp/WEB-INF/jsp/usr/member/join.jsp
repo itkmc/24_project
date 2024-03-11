@@ -7,159 +7,87 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script>
-	/* $(document).ready(function() {
-		// 회원가입 버튼을 클릭했을 때 실행되는 함수
-		$("#form1-submit-btn").click(function() {
-			// 첫 번째 폼 숨기기
-			$("form[name='form1']").hide();
-			// 두 번째 폼 표시하기
-			$("form[name='questionForm']").show();
-		});
+   $(document).ready(function() {
+      // 중복 확인 버튼 클릭 시
+      $("#confirm").click(function() {
+         var id = $("input[name='loginId']").val();
 
-		// 아이디 입력 필드의 값이 변경될 때마다 중복체크 여부를 다시 "no"로 설정
-		$("input[name='loginId']").on("input", function() {
-			$("#idCheck").val("no");
-		});
+         // 입력한 아이디가 비어있는 경우 알림창을 표시합니다.
+         if (id.trim() === '') {
+            alert("아이디를 입력해주세요.");
+            return;
+         }
 
-		// 비밀번호와 비밀번호 확인 일치 여부 확인
-		$("input[name='checkloginPw']").on("input", function() {
-			var password = $("input[name='loginPw']").val();
-			var confirmPassword = $(this).val();
-			if (password !== confirmPassword) {
-				$(this).css("border-color", "red");
-			} else {
-				$(this).css("border-color", ""); // 기본 스타일로 변경
-			}
-		});
+         // 서버에 아이디 중복 확인 요청을 보냅니다.
+         $.ajax({
+            type: "POST",
+            url : "/idOverlap",
+            data : {
+               id: id
+            },
+            success : function(data) {
+               if (data === "true") {
+                  alert("사용 가능한 아이디입니다.");
+                  $("#idCheck").val("yes"); // 중복체크 여부 변경
+               } else if (data === "false") {
+                  alert("중복된 아이디입니다.");
+                  $("#idCheck").val("no");
+               }
+            },
+            error : function() {
+               alert("서버와의 통신 중 오류가 발생했습니다.");
+            }
+         });
+      });
 
-		$("#confirm").click(function() {
-			var id = $("input[name='loginId']").val();
+      // 폼 제출 이벤트
+      $("form").submit(function(e) {
+         // 중복 체크를 하지 않은 경우 회원가입을 막습니다.
+         if ($("#idCheck").val() === 'no') {
+            e.preventDefault(); // 폼 제출 취소
+            alert("아이디 중복을 확인해주세요.");
+         }
 
-			// 입력한 아이디가 비어있는 경우 알림창 띄우기
-			if (id.trim() === '') {
-				alert("아이디를 입력해주세요.");
-				return;
-			}
+         // 비밀번호가 일치하지 않는 경우 회원가입을 막고, 비밀번호 확인란을 빨간색으로 표시합니다.
+         var password = $("input[name='loginPw']").val();
+         var confirmPassword = $("input[name='loginPwCheck']").val();
+         if (password !== confirmPassword) {
+            e.preventDefault(); // 폼 제출 취소
+            $("#passwordMatchMessage").text("비밀번호가 일치하지 않습니다").css("color", "red");
+            $("input[name='loginPwCheck']").css("border-color", "red");
+         } else {
+            // 비밀번호가 일치하는 경우, 비밀번호 확인란을 초록색으로 표시합니다.
+            $("#passwordMatchMessage").text("비밀번호가 일치합니다").css("color", "green");
+            $("input[name='loginPwCheck']").css("border-color", "green");
+         }
+      });
 
-			// 아이디를 서버로 전송하여 중복 여부 확인
-			$.ajax({
-				type : "POST",
-				url : "/idOverlap",
-				data : {
-					id : id
-				},
-				success : function(data) {
-					if (data === "true") {
-						alert("사용 가능한 아이디입니다.");
-						$("#idCheck").val("yes"); // 중복체크 여부 변경
-					} else if (data === "false") {
-						alert("중복된 아이디입니다.");
-					}
-				},
-				error : function() {
-					alert("서버와의 통신 중 오류가 발생했습니다.");
-				}
-			});
-		});
+      // 비밀번호 입력란 이벤트 핸들러: 비밀번호 일치 여부 확인
+      $("input[name='loginPw'], input[name='loginPwCheck']").on("input", function() {
+         var password = $("input[name='loginPw']").val(); // 첫 번째 비밀번호 입력란
+         var confirmPassword = $("input[name='loginPwCheck']").val(); // 두 번째 비밀번호 입력란
+         var $passwordMatchMessage = $("#passwordMatchMessage");
 
-		// 회원가입 폼 제출 전 필요한 모든 검증을 수행
-		$("form[name='form1']").submit(function() {
-			if ($("#idCheck").val() === 'no') {
-				alert("아이디 중복체크를 해주세요.");
-				return false; // 폼 제출 취소
-			}
+         if (password !== '' && confirmPassword !== '') { // 두 입력란이 모두 비어 있지 않은 경우에만 비교
+            if (password === confirmPassword) {
+               $passwordMatchMessage.text("비밀번호가 일치합니다").css("color", "green");
+               $("input[name='loginPwCheck']").css("border-color", "green");
+            } else {
+               $passwordMatchMessage.text("비밀번호가 일치하지 않습니다").css("color", "red");
+               $("input[name='loginPwCheck']").css("border-color", "red");
+            }
+         } else {
+            $passwordMatchMessage.text(""); // 한 입력란이라도 비어 있는 경우 메시지 초기화
+            $("input[name='loginPwCheck']").css("border-color", ""); // 입력란 테두리 색상 초기화
+         }
+      });
+   });
+</script>
 
-			var password = $("input[name='loginPw']").val();
-			var confirmPassword = $("input[name='checkloginPw']").val();
-
-			if (password !== confirmPassword) {
-				alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-				return false; // 폼 제출 취소
-			}
-
-			// 여기에 닉네임 중복체크 로직 추가
-			var nickname = $("input[name='nickname']").val();
-			// AJAX를 사용하여 닉네임 중복 체크를 수행하는 부분을 추가해야 합니다.
-
-			// 모든 검증이 완료되면 문제 푸는 페이지로 이동
-			window.location.href = "../member/showQuestion";
-
-			// 폼 제출을 막습니다.
-			return false;
-		}); */
-		<script>
-	    $(document).ready(function() {
-	        // 중복 확인 버튼 클릭 시
-	        $("#confirm").click(function() {
-	            var id = $("input[name='loginId']").val();
-
-	            // 입력한 아이디가 비어있는 경우 알림창 띄우기
-	            if (id.trim() === '') {
-	                alert("아이디를 입력해주세요.");
-	                return;
-	            }
-
-	            // 아이디를 서버로 전송하여 중복 여부 확인
-	            $.ajax({
-	                type : "POST",
-	                url : "/idOverlap",
-	                data : {
-	                    id : id
-	                },
-	                success : function(data) {
-	                    if (data === "true") {
-	                        alert("사용 가능한 아이디입니다.");
-	                        $("#idCheck").val("yes"); // 중복체크 여부 변경
-	                    } else if (data === "false") {
-	                        alert("중복된 아이디입니다.");
-	                    }
-	                },
-	                error : function() {
-	                    alert("서버와의 통신 중 오류가 발생했습니다.");
-	                }
-	            });
-	        });
-	    });
-	</script>
-
-
-		<!-- // 문제 푸는 페이지에서의 회원가입 기능
-		 $("form[name='questionForm']").submit(function() {
-			var answers = [];
-			for (var i = 1; i <= 10; i++) {
-				var answer = $("input[name='Question" + i + "']").val().trim();
-				answers.push(answer);
-			}
-
-			$.ajax({
-				type : "POST",
-				url : "/usr/member/doQuestion",
-				data : JSON.stringify({
-					"answers" : answers
-				}), // 데이터를 JSON 문자열로 변환
-				contentType : 'application/json', // contentType을 application/json으로 설정
-				success : function(response) {
-					if (response.success) {
-						alert("회원가입이 완료되었습니다! 점수: " + response.score);
-						window.location.href = "/home/main";
-					} else {
-						alert("회원가입에 실패했습니다. 다시 시도해주세요.");
-					}
-				},
-				error : function(xhr, status, error) {
-					alert("오류가 발생했습니다. 다시 시도해주세요.");
-				}
-			});
-
-			// 폼 제출을 막습니다.
-			return false;
-		});
-	}); 
-</script> -->
 
 <section class="mt-8 text-xl px-4">
 	<div class="mx-auto">
-		<form name="form1" id="form1" action="#" method="POST">
+		<form name="form1" id="form1" action="/usr/member/showQuestion" method="POST">
 			<table class="join-box table-box-1" border="1">
 				<tbody>
 					<tr>
@@ -174,9 +102,9 @@
 							placeholder="비밀번호를 입력해주세요" name="loginPw" /></td>
 					</tr>
 					<tr>
-						<th>비밀번호 확인</th>
-						<td><input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="password"
-							placeholder="비밀번호를 다시 한번 입력해주세요" name="checkloginPw" /></td>
+    					<th>비밀번호 확인</th>
+    					<td><input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="password"
+        					placeholder="비밀번호를 다시 한번 입력해주세요" name="loginPwCheck" /></td>
 					</tr>
 					<tr>
 						<th>이름</th>
@@ -190,7 +118,7 @@
 					</tr>
 					<tr>
 						<th></th>
-						<td><input type="submit" value="가입" /></td>
+						<td><input type="submit" value="다음" /></td>
 					</tr>
 				</tbody>
 			</table>
@@ -204,7 +132,7 @@
 
 <section class="mt-8 text-xl px-4">
 	<div class="mx-auto">
-		<form name="questionForm" id="questionForm" action="../member/doQuestion" method="POST" style="display: none">
+		<form name="questionForm" id="questionForm" action="../member/dojoin" method="POST" style="display: none">
 			<!-- 사용자 정보 입력 필드 -->
 			<input type="hidden" name="loginId" value="${loginId}" /> <input type="hidden" name="loginPw" value="${loginPw}" />
 			<input type="hidden" name="name" value="${name}" /> <input type="hidden" name="nickname" value="${nickname}" />
@@ -271,13 +199,13 @@
 							class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
 							placeholder="10번 문제의 정답을 입력해주세요" name="Question10" /></td>
 					</tr>
-					<!-- 회원가입 버튼 -->
 					<tr>
 						<th></th>
-						<td><input type="button" value="회원가입" onclick="../member/doQuestion" /></td>
+						<td><input type="submit" value="회원가입" /></td>
 					</tr>
 				</tbody>
 			</table>
 		</form>
 	</div>
 </section>
+

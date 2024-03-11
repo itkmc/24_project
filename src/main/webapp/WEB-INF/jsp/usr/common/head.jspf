@@ -27,6 +27,7 @@
 			<ul class="flex">
 
 				<li><a class="hover:underline" href="../article/list?boardId=3&page=1">QnA</a></li>
+				<li><a class="hover:underline" href="../home/map">MAP</a></li>
 
 				<c:if test="${!rq.isLogined() }">
 					<li><a class="hover:underline" href="../member/login">LOGIN</a></li>

@@ -13,5 +13,12 @@ public interface QuestionRepository {
 			from question
 			""")
 	public List<String> findCorrectAnswers();
-		
+
+	@Select("""
+			SELECT answer
+			FROM question
+			WHERE id =1
+			""")
+	public String getQuestion1();
+
 }
