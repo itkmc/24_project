@@ -8,9 +8,7 @@
 <section class="intro">
 	<div class="container">
 		<video muted autoplay loop class="fullscreen-video">
-			<source
-				src="https://media.istockphoto.com/id/1329851020/ko/%EB%B9%84%EB%94%94%EC%98%A4/%EB%B6%81%EC%B4%8C-%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84-%EC%84%9C%EC%9A%B8-%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD.mp4?s=mp4-640x640-is&k=20&c=PPWBPiK6LXdVpakABtQLkOSfGdQx1-dR_YfIf3KR5m0="
-				type="video/mp4">
+			<source src="https://media.istockphoto.com/id/1329851020/ko/%EB%B9%84%EB%94%94%EC%98%A4/%EB%B6%81%EC%B4%8C-%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84-%EC%84%9C%EC%9A%B8-%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD.mp4?s=mp4-640x640-is&k=20&c=PPWBPiK6LXdVpakABtQLkOSfGdQx1-dR_YfIf3KR5m0=" type="video/mp4">
 		</video>
 		<div class="title">
 			<h1>History TimeLine &darr;</h1>
@@ -68,15 +66,16 @@
 				고구려, 백제, 신라 세 나라의 등장!
 			</div>
 		</li>
-		<li><a href="../history/goguryeo"></a>
-			<div class="double">
-				<time>
-					고구려<img src="https://img.etoday.co.kr/pto_db/2015/11/20151124092715_759754_600_463.jpg"
-						style="width: 150px; height: 150px;" />
-				</time>
-				하늘의 자손, 나라를 세우다!!
-			</div></li>
-		<li>
+		<li><a href="../history/goguryeo" style="display: block;">
+				<div class="double">
+					<time>
+						고구려 <img src="https://img.etoday.co.kr/pto_db/2015/11/20151124092715_759754_600_463.jpg"
+							style="width: 150px; height: 150px;" />
+					</time>
+					하늘의 자손, 나라를 세우다!!
+				</div>
+		</a></li>
+		<li><a href="../history/baekjae" style="display: block;">
 			<div class="double">
 				<time>
 					백제 <img src="https://dimg.donga.com/wps/NEWS/IMAGE/2023/09/11/121128427.10.png"
