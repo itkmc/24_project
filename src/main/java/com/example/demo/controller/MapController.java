@@ -27,24 +27,27 @@ public class MapController {
 	@GetMapping("usr/home/map")
 	public String showMap(Model model) {
 		List<CSV> csvList = mapRepository.selectList();
-		
+
 		model.addAttribute("csvList", csvList);
 		return "usr/home/map";
 	}
 
-	private List<CSV> readCSVFile(String filePath) {
+	private List<CSV> csvList(String filePath) {
 		List<CSV> csvList = new ArrayList<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 			String line;
 			// 첫 줄은 헤더일 수 있으므로 스킵
-//            br.readLine();
+			// br.readLine();
 			while ((line = br.readLine()) != null) {
 				String[] data = line.split(",");
+				System.out.println("데이터 길이: " + data.length); // 데이터 배열의 길이 출력
 				CSV csv = new CSV();
 				csv.setRuinsname(data[0]);
 				csv.setLatitude(data[1]);
 				csv.setLongitude(data[2]);
-				csv.setCreationtime(data[3]);
+				csv.setImagelink(data[3]);
+				csv.setDescription(data[4]);
+
 				csvList.add(csv);
 			}
 		} catch (IOException e) {

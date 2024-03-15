@@ -12,6 +12,7 @@ public class CSV {
 	private String ruinsname;
 	private String latitude;
 	private String longitude;
-	private String creationtime;
+	private String imagelink;
+	private String description;
 	
 }

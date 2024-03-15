@@ -26,9 +26,8 @@ public class CSVService {
             
 
             for (String fileName : fileNames) {
-            	InputStreamReader is = new InputStreamReader(getClass().getClassLoader().getResourceAsStream("CSV/" + fileName), "EUC-KR");
-
-            	CSVReader reader = new CSVReader(is);
+                InputStreamReader is = new InputStreamReader(getClass().getClassLoader().getResourceAsStream("CSV/" + fileName), "EUC-KR");
+                CSVReader reader = new CSVReader(is);
 
                 // 첫 번째 줄(헤더) 건너뛰기
                 reader.skip(1);
@@ -38,10 +37,11 @@ public class CSVService {
                 for (String[] csvRow : list) {
                     CSV csv = new CSV();
                     // 엔터티의 필드에 CSV 데이터를 할당
-                    csv.setRuinsname(csvRow[0]);
-                    csv.setLatitude(csvRow[6]);
-                    csv.setLongitude(csvRow[7]);
-                    csv.setCreationtime(csvRow[12]);
+                    csv.setRuinsname(csvRow[0]); 
+                    csv.setLatitude(csvRow[2]);
+                    csv.setLongitude(csvRow[3]);
+                    csv.setImagelink(csvRow[5]);
+                    csv.setDescription(csvRow[6]);
 
                     csvList.add(csv);
                 }
@@ -49,7 +49,6 @@ public class CSVService {
 
             // CSV 데이터를 데이터베이스에 저장
             csvRepository.insertCSVList(csvList);
-            
 
             return "CSV 데이터가 성공적으로 데이터베이스에 저장되었습니다.";
 

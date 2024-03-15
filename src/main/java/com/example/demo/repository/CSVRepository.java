@@ -9,9 +9,13 @@ import java.util.List;
 @Mapper
 public interface CSVRepository {
 
-	@Insert({ "<script>", "INSERT INTO CSV (ruinsname, latitude, longitude, creationtime) VALUES ",
-			"<foreach collection='csvList' item='item' index='index' separator=','>",
-			"(#{item.ruinsname},#{item.latitude}, #{item.longitude}, #{item.creationtime})", "</foreach>", "</script>" })
-	void insertCSVList(List<CSV> csvList);
-
+    @Insert({
+            "<script>",
+            "INSERT INTO CSV (ruinsname, latitude, longitude, imagelink, description) VALUES ",
+            "<foreach collection='csvList' item='item' index='index' separator=','>",
+            "(#{item.ruinsname},#{item.latitude}, #{item.longitude}, #{item.imagelink}, #{item.description})",
+            "</foreach>",
+            "</script>"
+    })
+    void insertCSVList(List<CSV> csvList);
 }
