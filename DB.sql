@@ -56,13 +56,16 @@ VALUES
     
 # CSV 테이블 생성
 CREATE TABLE csv (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT(10) AUTO_INCREMENT PRIMARY KEY,
     ruinsname CHAR(100) NOT NULL,
     latitude CHAR(100) NOT NULL,
-    hardness CHAR(100) NOT NULL,
-    creationtime CHAR(100) DEFAULT '미상' NOT NULL 
-);    
+    longitude CHAR(100) NOT NULL,
+    imagelink TEXT NOT NULL,
+    `description` CHAR(200) NOT NULL
+);
+
 DROP TABLE IF EXISTS csv;    
+
 SELECT * FROM question;
 
 SELECT * FROM `member`;
@@ -71,6 +74,10 @@ SELECT * FROM csv;
     
     
 ###############################################
+
+
+SELECT ruinsname ,latitude, hardness
+FROM csv
 
 # reactionPoint 테이블 생성
 CREATE TABLE reactionPoint(
