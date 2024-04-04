@@ -17,7 +17,7 @@ public class ResultData<DT> {
 	@Getter
 	private String data2Name;
 
-	public static <DT> ResultData<Object> from(String resultCode, String msg) {
+	public static <DT> ResultData<Integer> from(String resultCode, String msg) {
 		return from(resultCode, msg, null, null);
 	}
 

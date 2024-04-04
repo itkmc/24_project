@@ -6,6 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class UsrHistoryController {
 	
+	@RequestMapping("/usr/history/main")
+	public String showMain() {
+
+		return "/usr/history/main";
+	}
+	
 	@RequestMapping("/usr/history/goguryeo")
 	public String showGoguryeo() {
 

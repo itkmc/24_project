@@ -1,9 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -101,33 +97,24 @@ public class UsrMemberController {
 		return "usr/member/join";
 	}
 
-	@RequestMapping("/usr/member/dojoin")
+	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
-	public String dojoin(HttpServletRequest req) {
-	    String loginId = req.getParameter("loginId");
-	    String loginPw = req.getParameter("loginPw");
-	    String name = req.getParameter("name");
-	    String nickname = req.getParameter("nickname");
-	    String[] userAnswersArray = req.getParameterValues("userAnswers[]");
+	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname,
+			String cellphoneNum, String email, Integer id, String userAnswers) {
+		Rq rq = (Rq) req.getAttribute("rq");
+		if (rq.isLogined()) {
+			return Ut.jsHistoryBack("F-A", "이미 로그인 상태입니다");
+		}
 
-	    List<String> userAnswers = userAnswersArray != null ? Arrays.asList(userAnswersArray) : Collections.emptyList();
+		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname);
 
-	    ResultData<Object> joinResult = memberService.join(loginId, loginPw, name, nickname);
+		if (joinRd.isFail()) {
+			return Ut.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
+		}
 
-	    if (joinResult.isSuccess()) {
-	        // DB에서 정답을 가져오는 로직 필요
-	        List<String> correctAnswers = fetchCorrectAnswers();
+		Member member = memberService.getMember(joinRd.getData1());
 
-	        // 사용자 답변을 기반으로 점수를 계산합니다.
-	        String grade = calculateScore(userAnswers, correctAnswers);
-
-	        // 회원 등급을 업데이트합니다.
-	        memberService.updateMember(loginId, grade);
-	        
-	        return "회원가입 및 등급 설정이 완료되었습니다.";
-	    } else {
-	        return "회원가입에 실패했습니다.";
-	    }
+		return Ut.jsReplace(joinRd.getResultCode(), joinRd.getMsg(), "../member/login");
 	}
 
 	@PostMapping("/idOverlap")

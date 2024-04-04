@@ -24,12 +24,12 @@ public class MapController {
 		this.mapRepository = mapRepository;
 	}
 
-	@GetMapping("usr/home/map")
+	@GetMapping("usr/home/historicsitesmap")
 	public String showMap(Model model) {
 		List<CSV> csvList = mapRepository.selectList();
 
 		model.addAttribute("csvList", csvList);
-		return "usr/home/map";
+		return "usr/home/historicsitesmap";
 	}
 
 	private List<CSV> csvList(String filePath) {

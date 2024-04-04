@@ -1,15 +1,11 @@
 package com.example.demo.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.controller.userAnswers;
 import com.example.demo.repository.MemberRepository;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Member;
-import com.example.demo.vo.Question;
 import com.example.demo.vo.ResultData;
 
 @Service
@@ -21,7 +17,7 @@ public class MemberService {
 		this.memberRepository = memberRepository;
 	}
 
-	public ResultData<Object> join(String loginId, String loginPw, String name, String nickname) {
+	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname) {
 
 		Member existsMember = getMemberByLoginId(loginId);
 
@@ -69,29 +65,4 @@ public class MemberService {
 		}
 		return true;
 	}
-	
-	private String calculateScore(List<String> userAnswers) {
-	    // 여기에 점수 계산 로직 구현
-	    int score = 0; // 예시로 점수를 계산하는 로직을 추가해야 함
-	    
-	    userAnswers
-	    // 점수에 따라 회원의 등급을 결정합니다.
-	    String grade;
-	    if (score >= 8) {
-	    	return  grade = "초고수";
-	    } else if (score >= 4) {
-	    	return grade = "중수";
-	    } else {
-	    	return  grade = "초보";
-	    }
-	}	
-
-	public Object updateMember(String loginId, String grade) {
-		return memberRepository.updateMember(loginId, grade);
-
-	}
-
-//	public Question question(String question1) {
-//		return memberRepository.question(question1);
-//	}
 }

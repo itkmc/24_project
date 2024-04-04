@@ -6,37 +6,37 @@
 <!-- 제이쿼리 불러오기 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<!-- <script> -->
-// $("form[name='questionForm']").submit(function() {
-//     collectAnswers();
+<script>
+	$("form[name='questionForm']").submit(function() {
+		collectAnswers();
 
-//     $.ajax({
-//         type: "POST",
-//         url: "/usr/member/dojoin",
-//         data: {
-//             loginId: $("input[name='loginId']").val(),
-//             loginPw: $("input[name='loginPw']").val(),
-//             name: $("input[name='name']").val(),
-//             nickname: $("input[name='nickname']").val(),
-//             answers: answers
-//         },
-//         success: function(response) {
-//             console.log(response);
-//             window.location.href = "/usr/member/showQuestion"; // 회원가입 후 문제 푸는 페이지로 리다이렉션
-//         },
-//         error: function(xhr, status, error) {
-//             console.error("오류가 발생했습니다:", error);
-//         }
-//     });
+		$.ajax({
+			type : "POST",
+			url : "/usr/member/doJoin",
+			data : {
+				loginId : $("input[name='loginId']").val(),
+				loginPw : $("input[name='loginPw']").val(),
+				name : $("input[name='name']").val(),
+				nickname : $("input[name='nickname']").val(),
+				answers : answers
+			},
+			success : function(response) {
+				console.log(response);
+				window.location.href = "/usr/member/showQuestion"; // 회원가입 후 문제 푸는 페이지로 리다이렉션
+			},
+			error : function(xhr, status, error) {
+				console.error("오류가 발생했습니다:", error);
+			}
+		});
 
-//     return false;
-// });
-<!-- </script> -->
+		return false;
+	});
+</script>
 
 
 <section class="mt-8 text-xl px-4">
 	<div class="mx-auto">
-		<form name="questionForm" action="../member/dojoin" method="POST">
+		<form name="questionForm" action="../member/doJoin" method="POST">
 			<input type="hidden" name="loginId" value="${loginId}" /> <input type="hidden" name="loginPw" value="${loginPw}" />
 			<input type="hidden" name="name" value="${name}" /> <input type="hidden" name="nickname" value="${nickname}" />
 

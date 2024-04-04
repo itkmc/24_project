@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import com.example.demo.vo.Question;
+
 @Mapper
 public interface QuestionRepository {
 
@@ -20,5 +22,12 @@ public interface QuestionRepository {
 			WHERE id =1
 			""")
 	public String getQuestion1();
+
+	@Select ("""
+			SELECT * 
+			FROM question 
+			WHERE id = #{questionId}
+			""")
+	public Question getQuestionById(int questionId);
 
 }
