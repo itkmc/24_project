@@ -7,12 +7,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CSV {
+public class CSV2 {
 	private int id;
-	private String ruinsname;
+	private String museumName;
 	private String latitude;
 	private String longitude;
-	private String imagelink;
-	private String description;
+	private String viewingHours;
+	private String closedDays;
+	private String admissionFee;
+	private String exhibitionInformation;
 	
 }

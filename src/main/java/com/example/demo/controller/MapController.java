@@ -12,7 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.repository.MapRepository;
-import com.example.demo.vo.CSV;
+import com.example.demo.vo.CSV1;
+import com.example.demo.vo.CSV2;
 
 @Controller
 public class MapController {
@@ -24,16 +25,24 @@ public class MapController {
 		this.mapRepository = mapRepository;
 	}
 
+	@GetMapping("usr/home/museummap")
+	public String showMap2(Model model) {
+		List<CSV2> csvList = mapRepository.selectList2();
+
+		model.addAttribute("csvList", csvList);
+		return "usr/home/museummap";
+	}
+
 	@GetMapping("usr/home/historicsitesmap")
 	public String showMap(Model model) {
-		List<CSV> csvList = mapRepository.selectList();
+		List<CSV1> csvList = mapRepository.selectList1();
 
 		model.addAttribute("csvList", csvList);
 		return "usr/home/historicsitesmap";
 	}
 
-	private List<CSV> csvList(String filePath) {
-		List<CSV> csvList = new ArrayList<>();
+	private List<CSV1> csvList(String filePath) {
+		List<CSV1> csvList1 = new ArrayList<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 			String line;
 			// 첫 줄은 헤더일 수 있으므로 스킵
@@ -41,18 +50,44 @@ public class MapController {
 			while ((line = br.readLine()) != null) {
 				String[] data = line.split(",");
 				System.out.println("데이터 길이: " + data.length); // 데이터 배열의 길이 출력
-				CSV csv = new CSV();
-				csv.setRuinsname(data[0]);
+				CSV1 csv = new CSV1();
+				csv.setRuinsName(data[0]);
 				csv.setLatitude(data[1]);
 				csv.setLongitude(data[2]);
-				csv.setImagelink(data[3]);
+				csv.setImageLink(data[3]);
 				csv.setDescription(data[4]);
 
-				csvList.add(csv);
+				csvList1.add(csv);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return csvList;
+		return csvList1;
+	}
+
+	private List<CSV2> csvList2(String filePath) {
+		List<CSV2> csvList2 = new ArrayList<>();
+		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+			String line;
+			// 첫 줄은 헤더일 수 있으므로 스킵
+			// br.readLine();
+			while ((line = br.readLine()) != null) {
+				String[] data = line.split(",");
+				System.out.println("데이터 길이: " + data.length); // 데이터 배열의 길이 출력
+				CSV2 csv = new CSV2();
+				csv.setMuseumName(data[0]);
+				csv.setLatitude(data[2]);
+				csv.setLongitude(data[3]);
+				csv.setViewingHours(data[4]);
+				csv.setClosedDays(data[5]);
+				csv.setAdmissionFee(data[6]);
+				csv.setExhibitionInformation(data[7]);
+
+				csvList2.add(csv);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return csvList2;
 	}
 }

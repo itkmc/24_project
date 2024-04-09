@@ -9,12 +9,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class CSVController {
 
-    @Autowired
-    private CSVService csvService;
+	@Autowired
+	private CSVService csvService;
 
-    @GetMapping("/readAndSaveToDB")
-    @ResponseBody
-    public String readAndSaveToDB() {
-        return csvService.readAndSaveToDB();
-    }
+	@GetMapping("/readAndSaveToDB")
+	@ResponseBody
+	public String readAndSaveToDB() {
+		return csvService.readAndSaveToDB();
+	}
+
+	@GetMapping("/readAndSaveToDB2")
+	@ResponseBody
+	public String readAndSaveToDB2() {
+		return csvService.readAndSaveToDB2();
+	}
 }

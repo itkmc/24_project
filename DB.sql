@@ -54,26 +54,72 @@ VALUES
     ('을사조약이 일본의 강압으로 이루어진것임을 세계에 알리고 무효로 만들기 위해 파견된 사절단의 이름은?', '헤이그특사'),
     ('김대중 정부 당시 북한에 협력과 지원을 함으로써 평화적인 통일을 목적으로 하는 대북 화해 협력정책인 이 정책의 이름은?', '햇볕정책');
     
-# CSV 테이블 생성
-CREATE TABLE csv (
+# CSV 테이블(유적지) 생성
+CREATE TABLE csv1 (
     id INT(10) AUTO_INCREMENT PRIMARY KEY,
-    ruinsname CHAR(100) NOT NULL,
+    ruinsName CHAR(100) NOT NULL,
     latitude CHAR(100) NOT NULL,
     longitude CHAR(100) NOT NULL,
-    imagelink TEXT NOT NULL,
+    imageLink TEXT NOT NULL,
     `description` CHAR(200) NOT NULL
 );
 
-DROP TABLE IF EXISTS csv;    
+# CSV 테이블(박물관) 생성
+CREATE TABLE csv2 (
+    id INT(10) AUTO_INCREMENT PRIMARY KEY,
+    museumName CHAR(100) NOT NULL,
+    latitude CHAR(100) NOT NULL,
+    longitude CHAR(100) NOT NULL,
+    viewingHours CHAR(200) NOT NULL,
+    closedDays CHAR(200) NOT NULL,
+    admissionFee CHAR(200) NOT NULL,
+    exhibitionInformation CHAR(200) NOT NULL
+);
+
+DROP TABLE IF EXISTS csv1;
+DROP TABLE IF EXISTS csv2; 
+
+ALTER TABLE MEMBER
+ADD COLUMN 문제점수 INT UNSIGNED NOT NULL DEFAULT 0;
+
+UPDATE MEMBER
+SET grade = CASE
+    WHEN 문제점수 <= 3 THEN '초보자'
+    WHEN 문제점수 <= 6 THEN '중급자'
+    WHEN 문제점수 <= 10 THEN '고급자'
+    ELSE '관리자'
+END;
+   
 
 SELECT * FROM question;
 
 SELECT * FROM `member`;
 
-SELECT * FROM csv;
+SELECT * FROM csv1;
+SELECT * FROM csv2;
     
     
 ###############################################
+
+# 서브쿼리
+SELECT A.*,
+IFNULL(SUM(RP.point),0) AS extra__sumReactionPoint,
+IFNULL(SUM(IF(RP.point > 0, RP.point, 0)),0) AS extra__goodReactionPoint,
+IFNULL(SUM(IF(RP.point < 0, RP.point, 0)),0) AS extra__badReactionPoint
+FROM (
+    SELECT A.*, M.nickname AS extra__writer 
+    FROM article AS A
+    INNER JOIN `member` AS M
+    ON A.memberId = M.id
+    ) AS A
+LEFT JOIN reactionPoint AS RP
+ON A.id = RP.relId AND RP.relTypeCode = 'article'
+GROUP BY A.id
+ORDER BY A.id DESC;
+
+
+
+
 
 
 SELECT ruinsname ,latitude, hardness
@@ -409,5 +455,5 @@ FROM reactionPoint AS RP
 GROUP BY RP.relTypeCode,RP.relId
 
 			SELECT answer
-			from question
-			where id =1
+			FROM question
+			WHERE id =1
