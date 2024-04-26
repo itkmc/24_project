@@ -3,16 +3,44 @@
 <c:set var="pageTitle" value="MAIN"></c:set>
 <%@ include file="../common/head.jspf"%>
 
-<section class="intro">
-	<div class="container">
-		<video muted autoplay loop class="fullscreen-video">
-			<source
-				src="https://media.istockphoto.com/id/1546346414/ko/%EB%B9%84%EB%94%94%EC%98%A4/%EA%B7%B8%EB%9F%B0%EC%A7%80-%ED%95%9C%EA%B5%AD%EC%9D%98-%EA%B7%BC%EC%A0%91-%EC%B4%AC%EC%98%81-%EA%B9%83%EB%B0%9C-%ED%9D%94%EB%93%A4%EA%B8%B0-%EB%B0%98%EB%B3%B5-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%8A%A4%ED%86%A1-%EB%B9%84%EB%94%94%EC%98%A4.mp4?s=mp4-640x640-is&k=20&c=LeCKPInZr1QKZpW7ZpwiybBMDTXwFSdafXlVnacDXSc="
-				type="video/mp4">
-		</video>
-		<div class="title">
-			<h1></h1>
-		</div>
-	</div>
-</section>
+<style>
 
+</style>
+
+<script>
+$(document).ready(function() {
+	  /* Get iframe src attribute value i.e. YouTube video url
+	  and store it in a variable */
+	  var url = $("#video").attr('src');
+
+	  /* Assign empty url value to the iframe src attribute when
+	  modal hide, which stop the video playing */
+	  $("#myModal").on('hide.bs.modal', function() {
+	    $("#video").attr('src', '');
+	  });
+
+	  /* Assign the initially stored url back to the iframe src
+	  attribute when modal is displayed again */
+	  $("#myModal").on('show.bs.modal', function() {
+	    $("#video").attr('src', url);
+	  });
+	});
+</script>
+
+
+<!-- Button HTML (to Trigger Modal) -->
+<a href="#myModal" data-toggle="modal">Launch Demo Modal</a>
+<!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">YouTube Video</h4>
+      </div>
+      <div class="modal-body">
+        <iframe id="video" width="560" height="315" src="/resources/영상/2024년 4월 이달의 독립운동가.mp4" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>

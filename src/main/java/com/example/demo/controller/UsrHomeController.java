@@ -33,6 +33,12 @@ public class UsrHomeController {
 		return "/usr/home/museummap";
 	}
 
+	@RequestMapping("/usr/home/personofthemonth")
+	public String showPersonOfTheMonth() {
+
+		return "/usr/home/personofthemonth";
+	}
+	
 	@ControllerAdvice
 	public class GlobalExceptionHandler {
 
