@@ -74,7 +74,7 @@
         // CSV 데이터를 가져와서 JavaScript에서 사용할 수 있는 형식으로 변환합니다.
         var csvData = [
             <c:forEach var="item" items="${csvList}">
-                { latitude: ${item.latitude}, longitude: ${item.longitude}, imageUrl: '${item.imagelink}', description: '${item.description}' }<c:if test="${!loop.last}">,</c:if>
+                { latitude: ${item.latitude}, longitude: ${item.longitude}, imageUrl: '${item.imageLink}', description: '${item.description}' }<c:if test="${!loop.last}">,</c:if>
             </c:forEach>
         ];
 

@@ -4,43 +4,72 @@
 <%@ include file="../common/head.jspf"%>
 
 <style>
+.popup {
+  position: absolute;
+  min-height: auto;
+  width: auto;
+  z-index: 1002;
+}
 
+.test {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 60%;
+  height: 60%;
+}
+
+.bg {
+  background-color: black;
+  opacity: 0.65;
+  position: absolute;
+  z-index: 1000;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+#showPopup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 10px 30px;
+
+  margin-top: -40px;
+  margin-left: -77px;
+  
+  font-size: 40px;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #333;
+}
 </style>
 
 <script>
-$(document).ready(function() {
-	  /* Get iframe src attribute value i.e. YouTube video url
-	  and store it in a variable */
-	  var url = $("#video").attr('src');
-
-	  /* Assign empty url value to the iframe src attribute when
-	  modal hide, which stop the video playing */
-	  $("#myModal").on('hide.bs.modal', function() {
-	    $("#video").attr('src', '');
+$(function() {
+	  $("#showPopup").click(function(e) {
+	    e.stopPropagation();
+	    $(".bg").toggle();
+	    $(".popup").toggle();
 	  });
-
-	  /* Assign the initially stored url back to the iframe src
-	  attribute when modal is displayed again */
-	  $("#myModal").on('show.bs.modal', function() {
-	    $("#video").attr('src', url);
+	  $("body").click(function() {
+	    $(".bg").toggle();
+	    $(".popup").hide();
+	    var video = $("#player").attr("src");
+	    $("#player").attr("src", "");
+	    $("#player").attr("src", video);
 	  });
 	});
 </script>
 
+<a href="#" id="showPopup">Click</a>
+<div class="bg" style="display: none"></div>
 
-<!-- Button HTML (to Trigger Modal) -->
-<a href="#myModal" data-toggle="modal">Launch Demo Modal</a>
-<!-- Modal HTML -->
-<div id="myModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">YouTube Video</h4>
-      </div>
-      <div class="modal-body">
-        <iframe id="video" width="560" height="315" src="/resources/영상/2024년 4월 이달의 독립운동가.mp4" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
+<div class="popup" style="display: none; height: 100%; width: 100%;">
+	<iframe id="player" class="test" src="/resource/2024년 4월.mp4" frameborder="0" allowfullscreen autoplay]></iframe>
 </div>
