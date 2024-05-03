@@ -71,5 +71,5 @@ $(function() {
 <div class="bg" style="display: none"></div>
 
 <div class="popup" style="display: none; height: 100%; width: 100%;">
-	<iframe id="player" class="test" src="/resource/2024년 4월.mp4" frameborder="0" allowfullscreen autoplay]></iframe>
+	<iframe id="player" class="test" src="/resource/2024년 4월.mp4" frameborder="0" allowfullscreen></iframe>
 </div>
