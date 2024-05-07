@@ -31,39 +31,70 @@
 	width: 400px; /* 오버레이 너비 조정 */
 }
 
-#image {
-  width: 200px; /* 이미지 크기를 동일하게 조정 */
-  height: auto; /* 가로 크기에 맞추어 세로 크기 자동 조정 */
-  float: left; /* 이미지를 왼쪽으로 정렬 */
-  margin-right: 10px; /* 이미지와 설명 사이 간격 설정 */
-}
-
 #description {
   float: left; /* 설명을 오른쪽으로 정렬 */
   width: calc(100% - 220px); /* 이미지 너비와 간격을 제외한 공간을 설정 */
 }
 </style>
 <body>
-	<div id="map" style="width:750px;height:350px;"></div>
+	<div class="mapbox" style="text-align: center;">
+		<div id="map"></div>
+		<div id="overlay">
+			<p id="museumName"></p>
+			<p id="viewingHours"></p>
+			<p id="closedDays"></p>
+			<p id="admissionFee"></p>
+			<p id="exhibitionInformation"></p>
+		</div>
+	</div>
 
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9027bcd1207d36d1a4ac000f5ba4ba0c"></script>
 	<script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		    mapOption = {
-		        center: new kakao.maps.LatLng(37.56903, 126.98316), // 지도의 중심좌표
-		        level: 5, // 지도의 확대 레벨
-		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
-		    }; 
+	var mapContainer = document.getElementById('map');
+    var overlay = document.getElementById('overlay');
+    var museumName = document.getElementById('museumName');
+    var viewingHours = document.getElementById('viewingHours');
+    var closedDays = document.getElementById('closedDays');
+    var admissionFee = document.getElementById('admissionFee');
+    var exhibitionInformation = document.getElementById('exhibitionInformation');
+    var currentMarker = null; // 현재 클릭된 마커를 저장하기 위한 변수
+	
+    // 중심 좌표를 초기화합니다. (임시 값)
+    var centerPosition = new kakao.maps.LatLng(37.56619, 126.97880);
 
+    var mapOption = {
+        center: centerPosition,
+        level: 11,
+        mapTypeId: kakao.maps.MapTypeId.ROADMAP
+    };
 		// 지도를 생성한다 
 		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// CSV 데이터를 가져와서 JavaScript에서 사용할 수 있는 형식으로 변환합니다.
+        var csvData = [
+            <c:forEach var="item" items="${csvList}">
+                { latitude: ${item.latitude}, longitude: ${item.longitude}, museumName: '${item.museumName}', viewingHours: '${item.viewingHours}', closedDays: '${item.closedDays}', admissionFee: '${item.admissionFee}', exhibitionInformation: '${item.exhibitionInformation}' }<c:if test="${!loop.last}">,</c:if>
+            </c:forEach>
+        ];
 
-		// 지도에 마커를 생성하고 표시한다
-		var marker = new kakao.maps.Marker({
-		    position: new kakao.maps.LatLng(37.56682, 126.97865), // 마커의 좌표
-		    map: map // 마커를 표시할 지도 객체
-		});
+		// CSV 데이터를 반복하여 마커와 오버레이를 생성합니다.
+        csvData.forEach(function(data) {
+            var markerPosition = new kakao.maps.LatLng(data.latitude, data.longitude);
+            var marker = new kakao.maps.Marker({
+                position: markerPosition,
+                map: map
+            });
 
+         // 마커를 클릭했을 때
+            kakao.maps.event.addListener(marker, 'click', function() {
+                // 오버레이의 표시를 토글합니다.
+                if (overlay.style.display === 'block') {
+                    overlay.style.display = 'none'; // 이미 표시된 경우 숨깁니다.
+                } else {
+                    overlay.style.display = 'block'; // 숨겨진 경우 표시합니다.
+                }
+            });
+        });
 	</script>
 </body>
 </html>

@@ -91,6 +91,8 @@ public class CSVService {
                     csvList.add(csv);
                 }
             }
+            
+            System.err.println("csv");
 
             // CSV 데이터를 데이터베이스에 저장
             csvRepository.insertCSVList2(csvList);

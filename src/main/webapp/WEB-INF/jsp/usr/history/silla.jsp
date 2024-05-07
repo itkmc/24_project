@@ -6,7 +6,7 @@
 <section class="intro">
 	<div class="container">
 		<h1>고구려</h1>
-		<text style="color : #be0000;">기원전 37년 ~ 668년</text>
+		<text>기원전 37년 ~ 668년</text>
 	</div>
 </section>
 

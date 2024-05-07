@@ -6,7 +6,7 @@
 <section class="intro">
 	<div class="container">
 		<h1>고구려</h1>
-		<text style="color : #be0000;">기원전 37년 ~ 668년</text>
+		<text>기원전 37년 ~ 668년</text>
 	</div>
 </section>
 
@@ -89,3 +89,5 @@
 				철제 무기를 가지고 정복활동으로 인한 연맹왕국의 탄생
 			</div>
 		</li>
+	</ul>
+</section>	

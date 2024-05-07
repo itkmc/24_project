@@ -99,10 +99,6 @@ body {
 	font-size: 80px;
 }
 
-/* .jb-box {
-	position: relative;
-}
- */
 .fullscreen-video {
     width: 100%;
     height: 700px;
@@ -182,6 +178,11 @@ text {
 
 .double {
 	border: 5px double;
+}
+
+::before, ::after {
+    /* --tw-ring-color: transparent; */
+    --tw-shadow-colored: transparent;
 }
 
 title {

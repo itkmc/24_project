@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>${pageTitle }</title>
 <link rel="stylesheet" href="/resource/common.css" />
+
 <script src="/resource/common.js" defer="defer"></script>
 <!-- 테일윈드 불러오기 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" />
@@ -20,8 +21,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <!-- 모달 비디오 관련 불러오기 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> --> 
+<!-- 이 부분을 지우니 원래 헤더 부분으로 돌아왔다 이 부분은 수정할 필요가 있다 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
 </head>
 <body>
 	<header>
@@ -30,12 +34,14 @@
 			<div class="flex-grow"></div>
 			<ul class="flex">
 
-				<li><a class="hover:underline" href="../history/main">타임라인</a></li>
-				<li><a class="hover:underline" href="../home/historicsitesmap">유적지도</a></li>
-				<li><a class="hover:underline" href="../home/museummap">박물관지도</a></li>
-				<li><a class="hover:underline" href="../home/personofthemonth">이달의인물</a></li>
-				<li><a class="hover:underline" href="../article/list?boardId=3&page=1">질의응답</a></li>
-				
+				<c:if test="${pageContext.request.requestURI != '/WEB-INF/jsp//usr/home/main.jsp'}">
+					<li><a class="hover:underline" href="../history/main">타임라인</a></li>
+					<li><a class="hover:underline" href="../home/historicsitesmap">유적지도</a></li>
+					<li><a class="hover:underline" href="../home/museummap">박물관지도</a></li>
+					<li><a class="hover:underline" href="../home/personofthemonth">이달의인물</a></li>
+					<li><a class="hover:underline" href="../article/list?boardId=3&page=1">질의응답</a></li>
+				</c:if>
+
 				<c:if test="${!rq.isLogined() }">
 					<li><a class="hover:underline" href="../member/login">로그인</a></li>
 					<li><a class="hover:underline" href="../member/join">회원가입</a></li>

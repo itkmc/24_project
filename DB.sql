@@ -76,8 +76,7 @@ CREATE TABLE csv2 (
     exhibitionInformation CHAR(200) NOT NULL
 );
 
-DROP TABLE IF EXISTS csv1;
-DROP TABLE IF EXISTS csv2; 
+
 
 ALTER TABLE MEMBER
 ADD COLUMN 문제점수 INT UNSIGNED NOT NULL DEFAULT 0;
@@ -89,7 +88,11 @@ SET grade = CASE
     WHEN 문제점수 <= 10 THEN '고급자'
     ELSE '관리자'
 END;
+
+###############################################
    
+DROP TABLE IF EXISTS csv1;
+DROP TABLE IF EXISTS csv2; 
 
 SELECT * FROM question;
 
