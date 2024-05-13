@@ -61,7 +61,7 @@ public class CSVService {
 
     public String readAndSaveToDB2() {
         try {
-            List<CSV2> csvList = new ArrayList<>();
+            List<CSV2> csvList2 = new ArrayList<>();
 
             // 예시 파일들을 배열에 추가
             String[] fileNames = {"test2.csv"};
@@ -77,25 +77,25 @@ public class CSVService {
                 List<String[]> list = reader.readAll();
 
                 for (String[] csvRow : list) {
-                    CSV2 csv = new CSV2();
+                    CSV2 csv2 = new CSV2();
                     // 엔터티의 필드에 CSV 데이터를 할당
-                    csv.setMuseumName(csvRow[0]); 
-                    csv.setLatitude(csvRow[2]);
-                    csv.setLongitude(csvRow[3]);
-                    csv.setViewingHours(csvRow[4]);
-                    csv.setClosedDays(csvRow[5]);
-                    csv.setAdmissionFee(csvRow[6]);
-                    csv.setExhibitionInformation(csvRow[7]);
+                    csv2.setMuseumName(csvRow[0]); 
+                    csv2.setLatitude(csvRow[2]);
+                    csv2.setLongitude(csvRow[3]);
+                    csv2.setViewingHours(csvRow[4]);
+                    csv2.setClosedDays(csvRow[5]);
+                    csv2.setAdmissionFee(csvRow[6]);
+                    csv2.setExhibitionInformation(csvRow[7]);
 
 
-                    csvList.add(csv);
+                    csvList2.add(csv2);
                 }
             }
             
             System.err.println("csv");
 
             // CSV 데이터를 데이터베이스에 저장
-            csvRepository.insertCSVList2(csvList);
+            csvRepository.insertCSVList2(csvList2);
 
             return "CSV 데이터가 성공적으로 데이터베이스에 저장되었습니다.";
 

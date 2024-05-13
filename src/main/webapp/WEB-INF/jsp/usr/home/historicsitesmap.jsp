@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <c:set var="pageTitle" value="HISTORICSITESMAP"></c:set>
 <%@ include file="../common/head.jspf"%>
 
@@ -46,7 +47,6 @@
 </style>
 </head>
 <body>
-	<div class="mapbox" style="text-align: center;">
 		<div id="map"></div>
 		<div id="overlay">
 			<img id="image" src="" alt="이미지">
@@ -77,7 +77,7 @@
                 { latitude: ${item.latitude}, longitude: ${item.longitude}, imageUrl: '${item.imageLink}', description: '${item.description}' }<c:if test="${!loop.last}">,</c:if>
             </c:forEach>
         ];
-
+        
         // CSV 데이터를 반복하여 마커와 오버레이를 생성합니다.
         csvData.forEach(function(data) {
             var markerPosition = new kakao.maps.LatLng(data.latitude, data.longitude);

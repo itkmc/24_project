@@ -227,7 +227,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2024년 4월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2024년 4월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -244,7 +244,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2024년 3월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2024년 3월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -261,7 +261,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2024년 2월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2024년 2월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -277,7 +277,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2024년 1월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2024년 1월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -293,7 +293,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2023년 12월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2023년 12월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -309,7 +309,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2023년 11월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2023년 11월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -325,7 +325,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2023년 10월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2023년 10월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -341,7 +341,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2023년 9월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2023년 9월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -357,7 +357,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2023년 8월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2023년 8월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -373,7 +373,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2023년 7월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2023년 7월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -389,7 +389,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2023년 6월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2023년 6월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -405,7 +405,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2023년 5월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2023년 5월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -421,7 +421,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2023년 4월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2023년 4월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -437,7 +437,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2023년 3월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2023년 3월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -453,7 +453,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2023년 2월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2023년 2월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -469,7 +469,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2023년 1월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2023년 1월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -485,7 +485,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2022년 12월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2022년 12월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -501,7 +501,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2022년 11월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2022년 11월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -517,7 +517,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2022년 10월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2022년 10월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -533,7 +533,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2022년 9월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2022년 9월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -549,7 +549,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2022년 8월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2022년 8월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -565,7 +565,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2022년 7월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2022년 7월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -581,7 +581,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2022년 6월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2022년 6월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -597,7 +597,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2022년 5월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2022년 5월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -613,7 +613,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2022년 4월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2022년 4월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -629,7 +629,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2022년 3월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2022년 3월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -645,7 +645,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2022년 2월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2022년 2월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
@@ -661,7 +661,7 @@ video {
 			<i class="ion-android-open" id="showPopup"></i>
 			<div class="bg" style="display: none"></div>
 			<div class="popup" style="display: none; height: 800px; width: 530px;">
-				<iframe id="player" class="test" src="/resource/2022년 1월.mp4" frameborder="0" allowfullscreen autoplay></iframe>
+				<iframe id="player" class="test" src="/resource/2022년 1월.mp4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</figure>
