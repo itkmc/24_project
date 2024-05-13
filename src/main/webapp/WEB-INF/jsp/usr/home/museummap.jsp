@@ -42,6 +42,7 @@
             </c:forEach>
         ];
 
+        console.log(csvData);
         // CSV 데이터를 반복하여 마커를 생성하고 지도에 표시한다.
         csvData.forEach(function(data) {
             var markerPosition = new kakao.maps.LatLng(data.latitude, data.longitude);
