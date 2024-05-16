@@ -45,6 +45,12 @@ public class UsrHomeController {
 		return "/usr/home/personofthemonth2";
 	}
 	
+	@RequestMapping("/usr/article/list")
+	public String showlist() {
+
+		return "/usr/article/list";
+	}
+	
 	@ControllerAdvice
 	public class GlobalExceptionHandler {
 

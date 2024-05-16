@@ -42,30 +42,30 @@ public class ReplyService {
 		if (reply == null) {
 			return;
 		}
-		ResultData userCanModifyRd = userCanModify(loginedMemberId, reply);
+		ResultData userCanModifyRd = userCanModify(loginedMemberId, reply, false);
 		reply.setUserCanModify(userCanModifyRd.isSuccess());
 
-		ResultData userCanDeleteRd = userCanDelete(loginedMemberId, reply);
+		ResultData userCanDeleteRd = userCanDelete(loginedMemberId, reply, false);
 		reply.setUserCanDelete(userCanDeleteRd.isSuccess());
 	}
 
-	public ResultData userCanDelete(int loginedMemberId, Reply reply) {
+	 public ResultData userCanDelete(int loginedMemberId, Reply reply, boolean isAdmin) {
+	        // 로그인한 사용자가 관리자이거나 댓글을 작성한 본인일 경우에만 삭제 권한을 부여합니다.
+	        if (!isAdmin && reply.getMemberId() != loginedMemberId) {
+	            return ResultData.from("F-2", Ut.f("%d번 댓글에 대한 삭제 권한이 없습니다", reply.getId()));
+	        }
 
-		if (reply.getMemberId() != loginedMemberId) {
-			return ResultData.from("F-2", Ut.f("%d번 댓글에 대한 삭제 권한이 없습니다", reply.getId()));
-		}
+	        return ResultData.from("S-1", Ut.f("%d번 댓글이 삭제 되었습니다", reply.getId()));
+	    }
 
-		return ResultData.from("S-1", Ut.f("%d번 댓글이 삭제 되었습니다", reply.getId()));
-	}
+	    public ResultData userCanModify(int loginedMemberId, Reply reply, boolean isAdmin) {
+	        // 로그인한 사용자가 관리자이거나 댓글을 작성한 본인일 경우에만 수정 권한을 부여합니다.
+	        if (!isAdmin && reply.getMemberId() != loginedMemberId) {
+	            return ResultData.from("F-2", Ut.f("%d번 댓글에 대한 수정 권한이 없습니다", reply.getId()));
+	        }
 
-	public ResultData userCanModify(int loginedMemberId, Reply reply) {
-
-		if (reply.getMemberId() != loginedMemberId) {
-			return ResultData.from("F-2", Ut.f("%d번 댓글에 대한 수정 권한이 없습니다", reply.getId()));
-		}
-
-		return ResultData.from("S-1", Ut.f("%d번 댓글을 수정했습니다", reply.getId()));
-	}
+	        return ResultData.from("S-1", Ut.f("%d번 댓글을 수정했습니다", reply.getId()));
+	    }
 
 	public Reply getReply(int id) {
 		return replyRepository.getReply(id);
