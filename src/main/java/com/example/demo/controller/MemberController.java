@@ -99,8 +99,7 @@ public class MemberController {
 
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
-	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname,
-			String cellphoneNum, String email, Integer id, String userAnswers) {
+	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname, Integer id, String userAnswers) {
 		Rq rq = (Rq) req.getAttribute("rq");
 		if (rq.isLogined()) {
 			return Ut.jsHistoryBack("F-A", "이미 로그인 상태입니다");
@@ -137,5 +136,50 @@ public class MemberController {
 	public String showMyPage() {
 
 		return "usr/member/myPage";
+	}
+	
+	@RequestMapping("/usr/member/checkPw")
+	public String showcheckPw() {
+
+		return "usr/member/checkPw";
+	}
+	
+	@RequestMapping("/usr/member/doCheckPw")
+	public String doCheckPw(String loginPw) {
+
+		if (Ut.isNullOrEmpty(loginPw)) {
+			return rq.historyBackOnView("비번 입력해");
+		}
+
+		if (rq.getLoginedMember().getLoginPw().equals(loginPw) == false) {
+			return rq.historyBackOnView("비번 틀림");
+		}
+
+		return "usr/member/modify";
+	}
+
+	@RequestMapping("/usr/member/doModify")
+	@ResponseBody
+	public String doModify(HttpServletRequest req, String loginPw, String name, String nickname) {
+		Rq rq = (Rq) req.getAttribute("rq");
+
+		// 비밀번호 안바꿀 수도 있어서 비번 null 체크는 제거
+
+		if (Ut.isNullOrEmpty(name)) {
+			return Ut.jsHistoryBack("F-3", "이름을 입력해주세요");
+		}
+		if (Ut.isNullOrEmpty(nickname)) {
+			return Ut.jsHistoryBack("F-4", "닉네임을 입력해주세요");
+		}
+		
+		ResultData modifyRd;
+
+		if (Ut.isNullOrEmpty(loginPw)) {
+			modifyRd = memberService.modifyWithoutPw(rq.getLoginedMemberId(), name, nickname);
+		} else {
+			modifyRd = memberService.modify(rq.getLoginedMemberId(), loginPw, name, nickname);
+		}
+
+		return Ut.jsReplace(modifyRd.getResultCode(), modifyRd.getMsg(), "../member/myPage");
 	}
 }

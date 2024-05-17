@@ -61,6 +61,23 @@ public interface MemberRepository {
 			</script>
 			""")
 	public void modify(int loginedMemberId, String loginPw, String name, String nickname);
+	
+	@Update("""
+			<script>
+			UPDATE `member`
+			<set>
+				<if test="name != null">
+					name = #{name},
+				</if>
+				<if test="nickname != null">
+					nickname = #{nickname},
+				</if>
+				updateDate= NOW()
+			</set>
+			WHERE id = #{loginedMemberId}
+			</script>
+			""")
+	public void modifyWithoutPw(int loginedMemberId, String name, String nickname);
 
 	@Select("""
 			SELECT *
