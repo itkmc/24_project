@@ -87,6 +87,14 @@ public class Rq {
 		req.setAttribute("historyBack", true);
 		return "usr/common/js";
 	}
+	
+	public String getLoginUri() {
+		return "../member/login?afterLoginUri=" + getAfterLoginUri();
+	}
+
+	private String getAfterLoginUri() {
+		return getCurrentUri();
+	}
 
 	public String getCurrentUri() {
 		String currentUri = req.getRequestURI();
