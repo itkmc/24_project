@@ -18,7 +18,7 @@ import com.example.demo.vo.Rq;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-public class UsrMemberController {
+public class MemberController {
 
 	@Autowired
 	private Rq rq;

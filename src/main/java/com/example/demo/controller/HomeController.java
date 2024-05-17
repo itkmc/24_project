@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class UsrHomeController {
+public class HomeController {
 
 	@RequestMapping("/usr/home/main")
 	public String showMain() {
@@ -43,12 +43,6 @@ public class UsrHomeController {
 	public String showPersonOfTheMonth2() {
 
 		return "/usr/home/personofthemonth2";
-	}
-	
-	@RequestMapping("/usr/article/list")
-	public String showlist() {
-
-		return "/usr/article/list";
 	}
 	
 	@ControllerAdvice

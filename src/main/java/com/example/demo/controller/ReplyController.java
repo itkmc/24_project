@@ -38,7 +38,7 @@ public class ReplyController {
 			return Ut.jsHistoryBack("F-3", "내용을 입력해주세요");
 		}
 
-		ResultData<Integer> writeReplyRd = replyService.writeReply(rq.getLoginedMemberId(), relTypeCode, relId, body);
+		ResultData<Integer> writeReplyRd = replyService.writeReply(rq.getLoginedMemberId(), relId, body);
 
 		int id = (int) writeReplyRd.getData1();
 
@@ -77,8 +77,6 @@ public class ReplyController {
 	@RequestMapping("/usr/reply/doModify")
 	@ResponseBody
 	public String doModify(HttpServletRequest req, int id, String body) {
-		System.err.println(id);
-		System.err.println(body);
 		Rq rq = (Rq) req.getAttribute("rq");
 
 		Reply reply = replyService.getReply(id);

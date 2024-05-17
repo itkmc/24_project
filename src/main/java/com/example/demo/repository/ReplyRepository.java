@@ -18,22 +18,20 @@ public interface ReplyRepository {
 				FROM reply AS R
 				INNER JOIN `member` AS M
 				ON R.memberId = M.id
-				WHERE relTypeCode = #{relTypeCode}
-				AND relId = #{relId}
+				WHERE relId = #{relId}
 				ORDER BY R.id ASC;
 			""")
-	List<Reply> getForPrintReplies(int loginedMemberId, String relTypeCode, int relId);
+	List<Reply> getForPrintReplies(int loginedMemberId, int relId);
 
 	@Insert("""
 				INSERT INTO reply
 				SET regDate = NOW(),
 				updateDate = NOW(),
 				memberId = #{loginedMemberId},
-				relTypeCode = #{relTypeCode},
 				relId = #{relId},
 				`body` = #{body}
 			""")
-	void writeReply(int loginedMemberId, String relTypeCode, int relId, String body);
+	void writeReply(int loginedMemberId, int relId, String body);
 
 	@Select("SELECT LAST_INSERT_ID()")
 	public int getLastInsertId();

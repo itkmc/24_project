@@ -20,8 +20,8 @@ public class ReplyService {
 		this.replyRepository = replyRepository;
 	}
 
-	public List<Reply> getForPrintReplies(int loginedMemberId, String relTypeCode, int relId) {
-		List<Reply> replies = replyRepository.getForPrintReplies(loginedMemberId, relTypeCode, relId);
+	public List<Reply> getForPrintReplies(int loginedMemberId, int relId) {
+		List<Reply> replies = replyRepository.getForPrintReplies(loginedMemberId, relId);
 
 		for (Reply reply : replies) {
 			controlForPrintData(loginedMemberId, reply);
@@ -30,8 +30,8 @@ public class ReplyService {
 		return replies;
 	}
 
-	public ResultData<Integer> writeReply(int loginedMemberId, String relTypeCode, int relId, String body) {
-		replyRepository.writeReply(loginedMemberId, relTypeCode, relId, body);
+	public ResultData<Integer> writeReply(int loginedMemberId, int relId, String body) {
+		replyRepository.writeReply(loginedMemberId, relId, body);
 
 		int id = replyRepository.getLastInsertId();
 
