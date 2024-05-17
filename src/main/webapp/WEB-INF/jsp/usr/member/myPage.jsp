@@ -3,11 +3,7 @@
 <c:set var="pageTitle" value="MYPAGE"></c:set>
 <%@ include file="../common/head.jspf"%>
 
-<div>${loginedMember }</div>
-<div>${loginedMember.loginId }</div>
-<div>${rq.loginedMember }</div>
-<div>${rq.loginedMember.loginId }</div>
-<div>${rq.loginedMember.getLoginId() }</div>
+
 <section class="mt-8 text-xl px-4 ">
 	<div class="">
 		<table class="table-box-1 " border="1">
@@ -33,12 +29,8 @@
 					<td>${loginedMember.nickname }</td>
 				</tr>
 				<tr>
-					<th>전화번호</th>
-					<td>${loginedMember.cellphoneNum }</td>
-				</tr>
-				<tr>
-					<th>이메일</th>
-					<td>${loginedMember.email }</td>
+					<th>회원등급</th>
+					<td>${loginedMember.grade }</td>
 				</tr>
 				<tr>
 					<th></th>

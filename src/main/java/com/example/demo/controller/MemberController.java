@@ -132,4 +132,10 @@ public class MemberController {
 		req.setAttribute("nickname", nickname);
 		return "usr/member/showQuestion";
 	}
+	
+	@RequestMapping("/usr/member/myPage")
+	public String showMyPage() {
+
+		return "usr/member/myPage";
+	}
 }
