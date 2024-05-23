@@ -3,6 +3,20 @@
 <c:set var="pageTitle" value="LOGIN"></c:set>
 <%@ include file="../common/head.jspf"%>
 
+<style>
+.login-box {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btns {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+</style>
 
 <section class="mt-8 text-xl px-4">
 	<div class="mx-auto">
@@ -12,23 +26,17 @@
 				<tbody>
 					<tr>
 						<th>아이디</th>
-						<td>
-							<input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
-								placeholder="아이디를 입력해주세요" name="loginId" />
-						</td>
+						<td><input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
+							placeholder="아이디를 입력해주세요" name="loginId" /></td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td>
-							<input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
-								placeholder="비밀번호를 입력해주세요" name="loginPw" />
-						</td>
+						<td><input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
+							placeholder="비밀번호를 입력해주세요" name="loginPw" /></td>
 					</tr>
 					<tr>
 						<th></th>
-						<td>
-							<input class="btn btn-outline btn-info" type="submit" value="로그인" />
-						</td>
+						<td><input class="btn btn-outline btn-info" type="submit" value="로그인" /></td>
 					</tr>
 				</tbody>
 			</table>
