@@ -37,7 +37,6 @@
 				<c:if test="${pageContext.request.requestURI != '/WEB-INF/jsp//usr/home/main.jsp'}">
 					<li><a class="hover:underline" href="../history/main">타임라인</a></li>
 					<li><a class="hover:underline" href="../home/historicsitesmap">유적지도</a></li>
-					<li><a class="hover:underline" href="../home/museummap">박물관지도</a></li>
 					<li><a class="hover:underline" href="../home/personofthemonth">이달의인물</a></li>
 					<li><a class="hover:underline" href="../article/list?boardId=3&page=1">질의응답</a></li>
 				</c:if>

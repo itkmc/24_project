@@ -130,11 +130,12 @@ public class MemberController {
 
 	@RequestMapping("/usr/member/showQuestion")
 	public String showQuestionForm(HttpServletRequest req, String loginId, String loginPw, String name,
-			String nickname) {
+			String nickname, int score) {
 		req.setAttribute("loginId", loginId);
 		req.setAttribute("loginPw", loginPw);
 		req.setAttribute("name", name);
 		req.setAttribute("nickname", nickname);
+		req.setAttribute("score", score);
 		return "usr/member/showQuestion";
 	}
 

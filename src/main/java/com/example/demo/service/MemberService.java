@@ -104,6 +104,6 @@ public class MemberService {
 
         // Update the member's score
         member.setScore(score);
-        memberRepository.updateMember(member);
+        
     }
 }
