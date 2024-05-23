@@ -32,9 +32,10 @@ public interface MemberRepository {
 			loginId = #{loginId},
 			loginPw = #{loginPw},
 			`name` = #{name},
-			nickname = #{nickname}
+			nickname = #{nickname},
+			score = #{score}
 			""")
-	public void join(String loginId, String loginPw, String name, String nickname);
+	public void join(String loginId, String loginPw, String name, String nickname, int score);
 
 	@Select("SELECT LAST_INSERT_ID()")
 	public int getLastInsertId();
@@ -87,10 +88,11 @@ public interface MemberRepository {
 	public Question question(String question1);
 
 	@Update("""
-			UPDATE 'member'
-			SET grade = #{grade}
+			UPDATE `member`
+			SET grade = #{grade},
+			score = #{score}
 			WHERE id = #{loginId}
 			""")
-	public Object updateMember(String loginId, String grade);
+	public void updateMember(Member member);
 
 }

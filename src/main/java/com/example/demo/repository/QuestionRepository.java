@@ -11,23 +11,9 @@ import com.example.demo.vo.Question;
 public interface QuestionRepository {
 
 	@Select("""
-			SELECT answer
+			SELECT *
 			from question
 			""")
-	public List<String> findCorrectAnswers();
-
-	@Select("""
-			SELECT answer
-			FROM question
-			WHERE id =1
-			""")
-	public String getQuestion1();
-
-	@Select ("""
-			SELECT * 
-			FROM question 
-			WHERE id = #{questionId}
-			""")
-	public Question getQuestionById(int questionId);
+	 public  List<Question> findAll();
 
 }

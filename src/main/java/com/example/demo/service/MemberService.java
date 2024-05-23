@@ -1,23 +1,30 @@
 package com.example.demo.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.MemberRepository;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Member;
+import com.example.demo.vo.Question;
 import com.example.demo.vo.ResultData;
 
 @Service
 public class MemberService {
 	@Autowired
 	private MemberRepository memberRepository;
+	
+	@Autowired
+	private QuestionService questionService;
 
 	public MemberService(MemberRepository memberRepository) {
 		this.memberRepository = memberRepository;
 	}
 
-	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname) {
+	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname, int score) {
 
 		Member existsMember = getMemberByLoginId(loginId);
 
@@ -31,7 +38,7 @@ public class MemberService {
 			return ResultData.from("F-8", Ut.f("이미 사용중인 이름(%s)입니다", nickname));
 		}
 
-		memberRepository.join(loginId, loginPw, name, nickname);
+		memberRepository.join(loginId, loginPw, name, nickname, score);
 
 		int id = memberRepository.getLastInsertId();
 
@@ -70,4 +77,33 @@ public class MemberService {
 		}
 		return true;
 	}
+
+	public void updateMemberScore(Integer memberId, String[] userAnswers) {
+        if (userAnswers == null) {
+            userAnswers = new String[0];
+        }
+
+        Member member = getMember(memberId);
+        List<String> correctAnswers = questionService.getAllQuestions().stream()
+                                                     .map(Question::getAnswer)
+                                                     .collect(Collectors.toList());
+
+        // Check user's answers against correct answers
+        int score = 0;
+        for (int i = 0; i < userAnswers.length; i++) {
+            if (correctAnswers.size() > i) {
+                String userAnswer = userAnswers[i];
+                String correctAnswer = correctAnswers.get(i);
+
+                // Compare user's answer with the correct answer
+                if (userAnswer != null && userAnswer.equals(correctAnswer)) {
+                    score++;
+                }
+            }
+        }
+
+        // Update the member's score
+        member.setScore(score);
+        memberRepository.updateMember(member);
+    }
 }

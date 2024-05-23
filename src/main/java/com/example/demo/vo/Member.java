@@ -15,6 +15,7 @@ public class Member {
 	private String loginPw;
 	private String name;
 	private String nickname;
+	private int score;
 	private String grade;
 	private boolean delStatus;
 	private String delDate;

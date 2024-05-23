@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.repository.MapRepository;
 import com.example.demo.vo.CSV1;
-import com.example.demo.vo.CSV2;
 
 @Controller
 public class MapController {
@@ -23,14 +22,6 @@ public class MapController {
 
 	public MapController(MapRepository mapRepository) {
 		this.mapRepository = mapRepository;
-	}
-
-	@GetMapping("usr/home/museummap")
-	public String showMap2(Model model) {
-		List<CSV2> csvList2 = mapRepository.selectList2();
-
-		model.addAttribute("csvList2", csvList2);
-		return "usr/home/museummap";
 	}
 
 	@GetMapping("usr/home/historicsitesmap")

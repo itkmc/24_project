@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import com.example.demo.service.MemberService;
 import com.example.demo.service.QuestionService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Member;
+import com.example.demo.vo.Question;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Rq;
 
@@ -99,20 +102,23 @@ public class MemberController {
 
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
-	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname, Integer id, String userAnswers) {
+	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname, int score,
+			Integer id, @RequestParam("userAnswers") String[] userAnswers) {
+
 		Rq rq = (Rq) req.getAttribute("rq");
 		if (rq.isLogined()) {
 			return Ut.jsHistoryBack("F-A", "이미 로그인 상태입니다");
 		}
 
-		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname);
+		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname, score);
 
 		if (joinRd.isFail()) {
 			return Ut.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
 		}
 
-		Member member = memberService.getMember(joinRd.getData1());
+		memberService.updateMemberScore(joinRd.getData1(), userAnswers);
 
+// Redirect the user to the login page after successful registration
 		return Ut.jsReplace(joinRd.getResultCode(), joinRd.getMsg(), "../member/login");
 	}
 
@@ -131,19 +137,19 @@ public class MemberController {
 		req.setAttribute("nickname", nickname);
 		return "usr/member/showQuestion";
 	}
-	
+
 	@RequestMapping("/usr/member/myPage")
 	public String showMyPage() {
 
 		return "usr/member/myPage";
 	}
-	
+
 	@RequestMapping("/usr/member/checkPw")
 	public String showcheckPw() {
 
 		return "usr/member/checkPw";
 	}
-	
+
 	@RequestMapping("/usr/member/doCheckPw")
 	public String doCheckPw(String loginPw) {
 
@@ -171,7 +177,7 @@ public class MemberController {
 		if (Ut.isNullOrEmpty(nickname)) {
 			return Ut.jsHistoryBack("F-4", "닉네임을 입력해주세요");
 		}
-		
+
 		ResultData modifyRd;
 
 		if (Ut.isNullOrEmpty(loginPw)) {
