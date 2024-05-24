@@ -1,10 +1,9 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +13,6 @@ import com.example.demo.service.MemberService;
 import com.example.demo.service.QuestionService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Member;
-import com.example.demo.vo.Question;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Rq;
 
@@ -102,7 +100,7 @@ public class MemberController {
 
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
-	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname, int score,
+	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname,
 			Integer id, @RequestParam("userAnswers") String[] userAnswers) {
 
 		Rq rq = (Rq) req.getAttribute("rq");
@@ -110,7 +108,7 @@ public class MemberController {
 			return Ut.jsHistoryBack("F-A", "이미 로그인 상태입니다");
 		}
 
-		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname, score);
+		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname);
 
 		if (joinRd.isFail()) {
 			return Ut.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
@@ -130,18 +128,17 @@ public class MemberController {
 
 	@RequestMapping("/usr/member/showQuestion")
 	public String showQuestionForm(HttpServletRequest req, String loginId, String loginPw, String name,
-			String nickname, int score) {
+			String nickname) {
 		req.setAttribute("loginId", loginId);
 		req.setAttribute("loginPw", loginPw);
 		req.setAttribute("name", name);
 		req.setAttribute("nickname", nickname);
-		req.setAttribute("score", score);
 		return "usr/member/showQuestion";
 	}
 
 	@RequestMapping("/usr/member/myPage")
 	public String showMyPage() {
-
+		
 		return "usr/member/myPage";
 	}
 
@@ -151,7 +148,7 @@ public class MemberController {
 		return "usr/member/checkPw";
 	}
 
-	@RequestMapping("/usr/member/doCheckPw")
+	@RequestMapping("/usr/member/modify")
 	public String doCheckPw(String loginPw) {
 
 		if (Ut.isNullOrEmpty(loginPw)) {
@@ -186,7 +183,7 @@ public class MemberController {
 		} else {
 			modifyRd = memberService.modify(rq.getLoginedMemberId(), loginPw, name, nickname);
 		}
-
+		
 		return Ut.jsReplace(modifyRd.getResultCode(), modifyRd.getMsg(), "../member/myPage");
 	}
 }

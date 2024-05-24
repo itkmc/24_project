@@ -24,7 +24,7 @@ public class MemberService {
 		this.memberRepository = memberRepository;
 	}
 
-	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname, int score) {
+	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname) {
 
 		Member existsMember = getMemberByLoginId(loginId);
 
@@ -38,7 +38,7 @@ public class MemberService {
 			return ResultData.from("F-8", Ut.f("이미 사용중인 이름(%s)입니다", nickname));
 		}
 
-		memberRepository.join(loginId, loginPw, name, nickname, score);
+		memberRepository.join(loginId, loginPw, name, nickname);
 
 		int id = memberRepository.getLastInsertId();
 
@@ -104,6 +104,6 @@ public class MemberService {
 
         // Update the member's score
         member.setScore(score);
-        
+        memberRepository.updateMember(member);
     }
 }

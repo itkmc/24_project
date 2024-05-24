@@ -4,6 +4,21 @@
 <%@ include file="../common/head.jspf"%>
 <!-- Member modify 관련 -->
 
+<style>
+.member-modify-box {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btns {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+</style>
+
 <script type="text/javascript">
 	let MemberModify__submitFormDone = false;
 	function MemberModify__submit(form) {
@@ -50,14 +65,14 @@
 					<tr>
 						<th>새 비밀번호</th>
 						<td>
-							<input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
+							<input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="password"
 								placeholder="새 비밀번호를 입력해주세요" name="loginPw" />
 						</td>
 					</tr>
 					<tr>
 						<th>새 비밀번호 확인</th>
 						<td>
-							<input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
+							<input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="password"
 								placeholder="새 비밀번호 확인을 입력해주세요" name="loginPwConfirm" />
 						</td>
 					</tr>

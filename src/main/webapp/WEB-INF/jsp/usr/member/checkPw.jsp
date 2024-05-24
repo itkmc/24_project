@@ -3,10 +3,24 @@
 <c:set var="pageTitle" value="LOGIN"></c:set>
 <%@ include file="../common/head.jspf"%>
 
+<style>
+.login-box {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btns {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+</style>
 
 <section class="mt-8 text-xl px-4">
 	<div class="mx-auto">
-		<form action="../member/doCheckPw" method="POST">
+		<form action="../member/modify" method="POST">
 			<table class="login-box table-box-1" border="1">
 				<tbody>
 					<tr>
@@ -16,7 +30,7 @@
 					<tr>
 						<th>비밀번호</th>
 						<td>
-							<input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
+							<input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="password"
 								placeholder="비밀번호를 입력해주세요" name="loginPw" />
 						</td>
 					</tr>

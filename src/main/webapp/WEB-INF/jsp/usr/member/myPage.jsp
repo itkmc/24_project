@@ -3,10 +3,25 @@
 <c:set var="pageTitle" value="MYPAGE"></c:set>
 <%@ include file="../common/head.jspf"%>
 
+<style>
+.myPage-box {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btns {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+</style>
+
 
 <section class="mt-8 text-xl px-4 ">
 	<div class="">
-		<table class="table-box-1 " border="1">
+		<table class="myPage-box table-box-1 " border="1">
 			<colgroup>
 				<col width="200" />
 			</colgroup>
@@ -14,23 +29,23 @@
 			<tbody>
 				<tr>
 					<th>가입일</th>
-					<td>${loginedMember.regDate }</td>
+					<td>${rq.loginedMember.regDate }</td>
 				</tr>
 				<tr>
 					<th>아이디</th>
-					<td>${loginedMember.loginId }</td>
+					<td>${rq.loginedMember.loginId }</td>
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td>${loginedMember.name }</td>
+					<td>${rq.loginedMember.name }</td>
 				</tr>
 				<tr>
 					<th>닉네임</th>
-					<td>${loginedMember.nickname }</td>
+					<td>${rq.loginedMember.nickname }</td>
 				</tr>
 				<tr>
 					<th>회원등급</th>
-					<td>${loginedMember.grade }</td>
+					<td>${rq.loginedMember.grade }</td>
 				</tr>
 				<tr>
 					<th></th>
